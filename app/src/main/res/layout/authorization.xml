@@ -4,21 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A9DEFF"
+    android:background="@color/primary_background"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/ButtonAuth"
         android:layout_width="124dp"
         android:layout_height="56dp"
+        android:background="@drawable/round_buttons"
+        android:backgroundTint="@color/background_blue"
+        android:shadowColor="@color/primary_background"
         android:text="@string/EnterButton"
+        app:iconTint="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/KeyAuth"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintVertical_bias="0.279"
         app:rippleColor="@color/black"
+        style="?android:attr/borderlessButtonStyle"
         tools:ignore="MissingConstraints" />
 
     <EditText
