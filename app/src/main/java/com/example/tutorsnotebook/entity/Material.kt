@@ -2,5 +2,5 @@ package com.example.tutorsnotebook.entity
 
 import java.net.URI
 
-class Material(destination: Student, link: URI, folder: String) {
+class Material(var destination: Student, var link: URI, var folder: String) {
 }

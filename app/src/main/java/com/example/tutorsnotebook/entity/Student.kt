@@ -1,11 +1,12 @@
 package com.example.tutorsnotebook.entity
 
 class Student(
-    key: String,
-    name: String,
-    surname: String,
-    studentPhone: Int,
-    parentPhone: Int,
-    avgScore: Int
+    var key: String,
+    var name: String,
+    var surname: String,
+    var studentPhone: Int,
+    var parentPhone: Int,
+    var avgScore: Int
 ) {
+
 }

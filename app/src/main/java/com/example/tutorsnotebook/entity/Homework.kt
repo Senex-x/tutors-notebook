@@ -2,5 +2,10 @@ package com.example.tutorsnotebook.entity
 
 import java.net.URI
 
-class Homework(author: Student, score: Int, status: Boolean, images: MutableList<URI>) {
+class Homework(
+    var author: Student,
+    var score: Int,
+    var status: Boolean,
+    var images: MutableList<URI>
+) {
 }

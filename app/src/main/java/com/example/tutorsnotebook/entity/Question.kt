@@ -1,4 +1,4 @@
 package com.example.tutorsnotebook.entity
 
-class Question(problem: String, answers: MutableList<String>, rightAnswerL: Int) {
+class Question(var problem: String, var answers: MutableList<String>, var rightAnswerL: Int) {
 }
