@@ -14,4 +14,5 @@
     <color name="background_blue">#00BFFF</color>
     <color name="blue_for_buttons">#4FD3FF</color>
     <color name="gray_for_password">#D3D3D3</color>
+    <color name="black_for_buttons">#80000000</color>
 </resources>
