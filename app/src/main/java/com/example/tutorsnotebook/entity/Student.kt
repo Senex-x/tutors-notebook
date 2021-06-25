@@ -1,4 +1,4 @@
-package entity
+package com.example.tutorsnotebook.entity
 
 class Student(
     key: String,
