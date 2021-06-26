@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">TutorsNotebook</string>
-    <string name="EnterButton">ВОЙТИ</string>
-    <string name="enter_password">Enter password</string>
+    <string name="auth_button_enter">Войти</string>
+    <string name="auth_hint_enter_password">Введите пароль</string>
 </resources>
