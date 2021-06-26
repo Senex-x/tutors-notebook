@@ -46,6 +46,7 @@ class StudentsFragment : Fragment() {
                     "SampleSurname $i",
                     i,
                     i,
+                    Random.nextBoolean(),
                     Random.nextInt(100),
                     10,
                     Student.ScoreStatus.values()[Random.nextInt(3)]

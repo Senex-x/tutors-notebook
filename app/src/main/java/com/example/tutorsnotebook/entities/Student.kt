@@ -6,6 +6,7 @@ class Student(
     var surname: String,
     var studentPhone: Int,
     var parentPhone: Int,
+    var isPayed: Boolean = false,
     var avgScore: Int = 0,
     // to update average score correctly
     var scoreCounter: Int = 0,

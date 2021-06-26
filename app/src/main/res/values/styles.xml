@@ -9,4 +9,9 @@
     <style name="edit_text_theme_default">
         <item name="colorAccent">@color/primary</item>
     </style>
+
+    <style name="text_style_default">
+        <item name="android:textSize">@dimen/text_size_default</item>
+        <item name="android:padding">@dimen/size_default</item>
+    </style>
 </resources>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
     android:layout_marginTop="4dp"
     android:layout_marginEnd="8dp"
@@ -13,39 +13,73 @@
     tools:context=".views.activities.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:padding="8dp"
-        android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingTop="@dimen/size_medium"
+        android:paddingEnd="16dp">
 
-        <TextView
-            android:id="@+id/list_item_student_edit_text_name"
+        <ImageView
+            android:id="@+id/list_item_student_image_view_payment_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="name"
+            android:src="@drawable/ic_check_circle_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/list_item_student_edit_text_score"
+            android:id="@+id/list_item_student_edit_text_name"
+            style="@style/text_style_default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_size_default"
+            android:text="name"
+            android:textSize="@dimen/text_size_default"
+            app:layout_constraintStart_toEndOf="@+id/list_item_student_image_view_payment_status"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/list_item_student_edit_text_score"
+            style="@style/text_style_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/text_size_default"
             android:text="100"
-            app:layout_constraintEnd_toStartOf="@+id/list_item_student_image_view_arrow"
+            app:layout_constraintEnd_toStartOf="@+id/list_item_student_image_view_score_status"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/list_item_student_image_view_arrow"
+            android:id="@+id/list_item_student_image_view_score_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_up_28"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:id="@+id/list_item_student_layout_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_default"
+            android:background="@drawable/rectangle_upperline_arrow_right"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/list_item_student_edit_text_name">
 
-
-
-
+            <TextView
+                style="@style/text_style_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="Развернуть..." />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.cardview.widget.CardView>

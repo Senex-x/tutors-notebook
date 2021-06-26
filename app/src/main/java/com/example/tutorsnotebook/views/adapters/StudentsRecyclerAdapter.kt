@@ -18,14 +18,16 @@ class StudentsRecyclerAdapter(private val data: List<Student>, private val conte
     RecyclerView.Adapter<StudentsRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var paymentImageView: ImageView? = null
         var nameTextView: TextView? = null
         var scoreTextView: TextView? = null
-        var arrowImageView: ImageView? = null
+        var statusImageView: ImageView? = null
 
         init {
+            paymentImageView = itemView.findViewById(R.id.list_item_student_image_view_payment_status)
             nameTextView = itemView.findViewById(R.id.list_item_student_edit_text_name)
             scoreTextView = itemView.findViewById(R.id.list_item_student_edit_text_score)
-            arrowImageView = itemView.findViewById(R.id.list_item_student_image_view_arrow)
+            statusImageView = itemView.findViewById(R.id.list_item_student_image_view_score_status)
         }
     }
 
@@ -39,9 +41,19 @@ class StudentsRecyclerAdapter(private val data: List<Student>, private val conte
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentCard = data[position]
 
+        initPaymentImageView(holder, currentCard)
         initNameEditText(holder, currentCard)
         initScoreTextView(holder, currentCard)
         initArrowImageView(holder, currentCard)
+    }
+
+    private fun initPaymentImageView(holder: ViewHolder, currentStudent: Student) {
+        val imageView = holder.paymentImageView!!
+        if (currentStudent.isPayed) {
+            setColoredImage(imageView, R.drawable.ic_check_circle_24, R.color.green)
+        } else {
+            setColoredImage(imageView, R.drawable.ic_minus_circle_24, R.color.red)
+        }
     }
 
     private fun initNameEditText(holder: ViewHolder, currentStudent: Student) {
@@ -53,21 +65,21 @@ class StudentsRecyclerAdapter(private val data: List<Student>, private val conte
     }
 
     private fun initArrowImageView(holder: ViewHolder, currentStudent: Student) {
-        val imageView = holder.arrowImageView!!
+        val imageView = holder.statusImageView!!
         when (currentStudent.scoreStatus) {
             Student.ScoreStatus.INCREASES -> {
-                setStatusImage(imageView, R.drawable.ic_arrow_up_28, R.color.green,  context)
+                setColoredImage(imageView, R.drawable.ic_arrow_up_28, R.color.green)
             }
             Student.ScoreStatus.STAYS -> {
-                setStatusImage(imageView, R.drawable.ic_minus_24, R.color.dark_gray,  context)
+                setColoredImage(imageView, R.drawable.ic_minus_24, R.color.dark_gray)
             }
             Student.ScoreStatus.DECREASES -> {
-                setStatusImage(imageView, R.drawable.ic_arrow_down_28, R.color.red,  context)
+                setColoredImage(imageView, R.drawable.ic_arrow_down_28, R.color.red)
             }
         }
     }
 
-    private fun setStatusImage(imageView: ImageView, imageId: Int, colorId: Int, context: Context, ) {
+    private fun setColoredImage(imageView: ImageView, imageId: Int, colorId: Int) {
         val vectorImage: Drawable = ResourcesCompat.getDrawable(context.resources, imageId, null)!!
         DrawableCompat.setTint(
             DrawableCompat.wrap(vectorImage),
