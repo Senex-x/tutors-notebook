@@ -42,8 +42,8 @@ class StudentsFragment : Fragment() {
             students.add(
                 Student(
                     "SampleKey $i",
-                    "SampleName $i",
-                    "SampleSurname $i",
+                    "Name $i",
+                    "Surname $i",
                     i,
                     i,
                     Random.nextBoolean(),

@@ -24,7 +24,8 @@ class StudentsRecyclerAdapter(private val data: List<Student>, private val conte
         var statusImageView: ImageView? = null
 
         init {
-            paymentImageView = itemView.findViewById(R.id.list_item_student_image_view_payment_status)
+            paymentImageView =
+                itemView.findViewById(R.id.list_item_student_image_view_payment_status)
             nameTextView = itemView.findViewById(R.id.list_item_student_edit_text_name)
             scoreTextView = itemView.findViewById(R.id.list_item_student_edit_text_score)
             statusImageView = itemView.findViewById(R.id.list_item_student_image_view_score_status)
@@ -57,7 +58,10 @@ class StudentsRecyclerAdapter(private val data: List<Student>, private val conte
     }
 
     private fun initNameEditText(holder: ViewHolder, currentStudent: Student) {
-        holder.nameTextView?.text = currentStudent.name
+        holder.nameTextView?.text = context.getString(
+            R.string.list_item_student_name,
+            currentStudent.name, currentStudent.surname
+        )
     }
 
     private fun initScoreTextView(holder: ViewHolder, currentStudent: Student) {
