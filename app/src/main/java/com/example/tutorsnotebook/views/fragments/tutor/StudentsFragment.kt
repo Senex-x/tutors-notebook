@@ -32,13 +32,13 @@ class StudentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recyclerView = view.findViewById(R.id.students_recycler_view)
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView?.adapter = StudentsRecyclerAdapter(getCardsData())
+        recyclerView?.adapter = StudentsRecyclerAdapter(getCardsData(), requireContext())
         super.onViewCreated(view, savedInstanceState)
     }
 
     private fun generateRandomCardsData(): ArrayList<Student> {
         val students: ArrayList<Student> = ArrayList()
-        for (i in 0..100) {
+        for (i in 0..10) {
             students.add(
                 Student(
                     "SampleKey $i",
@@ -48,7 +48,7 @@ class StudentsFragment : Fragment() {
                     i,
                     Random.nextInt(100),
                     10,
-                    Random.nextBoolean()
+                    Student.ScoreStatus.values()[Random.nextInt(3)]
                 )
             )
         }
