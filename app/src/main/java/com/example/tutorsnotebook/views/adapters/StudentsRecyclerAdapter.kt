@@ -54,12 +54,16 @@ class StudentsRecyclerAdapter(private val data: List<Student>, private val conte
 
     private fun initArrowImageView(holder: ViewHolder, currentStudent: Student) {
         val imageView = holder.arrowImageView!!
-        if(currentStudent.scoreStatus == Student.ScoreStatus.INCREASES) {
-            setStatusImage(imageView, R.drawable.ic_arrow_up_28, R.color.green,  context)
-        } else if(currentStudent.scoreStatus == Student.ScoreStatus.STAYS) {
-            setStatusImage(imageView, R.drawable.ic_minus_24, R.color.dark_gray,  context)
-        } else {
-            setStatusImage(imageView, R.drawable.ic_arrow_down_28, R.color.red,  context)
+        when (currentStudent.scoreStatus) {
+            Student.ScoreStatus.INCREASES -> {
+                setStatusImage(imageView, R.drawable.ic_arrow_up_28, R.color.green,  context)
+            }
+            Student.ScoreStatus.STAYS -> {
+                setStatusImage(imageView, R.drawable.ic_minus_24, R.color.dark_gray,  context)
+            }
+            Student.ScoreStatus.DECREASES -> {
+                setStatusImage(imageView, R.drawable.ic_arrow_down_28, R.color.red,  context)
+            }
         }
     }
 
