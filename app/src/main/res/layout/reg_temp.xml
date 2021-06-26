@@ -129,13 +129,13 @@
         android:text="Зарегистрировать"
         style="?android:attr/borderlessButtonStyle"
         android:background="@drawable/round_buttons"
-        app:layout_constraintBottom_toTopOf="@+id/main_bottom_navigation_view"
+        app:layout_constraintBottom_toTopOf="@+id/student_bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/generate_login_button" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/main_bottom_navigation_view"
+        android:id="@+id/student_bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/blue_for_buttons"

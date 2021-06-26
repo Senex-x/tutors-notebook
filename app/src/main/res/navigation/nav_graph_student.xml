@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_student"
+    app:startDestination="@id/knowledgeFragment">
+
+    <fragment
+        android:id="@+id/knowledgeFragment"
+        android:name="com.example.tutorsnotebook.views.fragments.student.KnowledgeFragment"
+        android:label="KnowledgeFragment"
+        tools:layout="@layout/fragment_knowledge">
+        <action
+            android:id="@+id/action_knowledgeFragment_to_homeworkFragment"
+            app:destination="@id/homeworkFragment" />
+        <action
+            android:id="@+id/action_knowledgeFragment_to_testsFragment"
+            app:destination="@id/testsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeworkFragment"
+        android:name="com.example.tutorsnotebook.views.fragments.student.HomeworkFragment"
+        android:label="HomeworkFragment"
+        tools:layout="@layout/fragment_homework">
+        <action
+            android:id="@+id/action_homeworkFragment_to_testsFragment"
+            app:destination="@id/testsFragment" />
+        <action
+            android:id="@+id/action_homeworkFragment_to_knowledgeFragment"
+            app:destination="@id/knowledgeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testsFragment"
+        android:name="com.example.tutorsnotebook.views.fragments.student.TestsFragment"
+        android:label="TestsFragment"
+        tools:layout="@layout/fragment_tests">
+        <action
+            android:id="@+id/action_testsFragment_to_homeworkFragment"
+            app:destination="@id/homeworkFragment" />
+        <action
+            android:id="@+id/action_testsFragment_to_knowledgeFragment"
+            app:destination="@id/knowledgeFragment" />
+    </fragment>
+</navigation>
