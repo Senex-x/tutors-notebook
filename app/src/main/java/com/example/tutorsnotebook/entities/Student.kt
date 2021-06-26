@@ -1,4 +1,4 @@
-package com.example.tutorsnotebook.entity
+package com.example.tutorsnotebook.entities
 
 class Student(
     var key: String,
@@ -6,7 +6,5 @@ class Student(
     var surname: String,
     var studentPhone: Int,
     var parentPhone: Int,
-    var avgScore: Int
-) {
-
-}
+    var avgScore: Int = 0
+)

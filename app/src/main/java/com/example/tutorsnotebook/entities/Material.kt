@@ -1,4 +1,4 @@
-package com.example.tutorsnotebook.entity
+package com.example.tutorsnotebook.entities
 
 import java.net.URI
 
