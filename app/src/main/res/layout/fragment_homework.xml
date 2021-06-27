@@ -2,16 +2,114 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HomeworkFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/header_box"
+        android:gravity="center"
+        android:text="Домашнее задание"
+        android:textAlignment="center"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/send_homework"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginBottom="240dp"
+        android:text="Добавить"
+        android:textSize="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/student_bottom_navigation_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title" />
+
+
+    <TextView
+        android:id="@+id/status_text"
+        android:layout_marginTop="52dp"
+        android:layout_width="wrap_content"
+        android:textSize="24dp"
+        android:layout_height="wrap_content"
+        android:text="Статус:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/send_homework" />
+
+    <TextView
+        android:id="@+id/status_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:text="отправлено"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_text" />
+
+    <TextView
+        android:id="@+id/last_work_score_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Баллы за прошлую работу:"
+        android:textSize="24dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_number" />
+
+    <TextView
+        android:id="@+id/last_work_score_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_work_score_text" />
+
+    <TextView
+        android:id="@+id/total_score_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Общий балл:"
+        android:layout_marginTop="30dp"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_work_score_number" />
+
+    <TextView
+        android:id="@+id/total_score_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="90"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_score_text" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/student_bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom_navigation_student" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
