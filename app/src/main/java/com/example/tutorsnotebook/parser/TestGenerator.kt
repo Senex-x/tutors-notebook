@@ -3,7 +3,7 @@ package com.example.tutorsnotebook.parser
 //TODO: Optimize imports
 import java.io.InputStream
 import com.aspose.cells.*
-import com.example.tutorsnotebook.entity.Question
+import com.example.tutorsnotebook.entities.Question
 
 //To TEST: TestGenerator.generateQuestions(applicationContext.resources.openRawResource(R.raw.test)) to MainActivity
 class TestGenerator {

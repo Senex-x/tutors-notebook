@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primary_background"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary_background"
-    tools:context=".views.activities.AuthActivity">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="180dp"
         app:cardCornerRadius="10dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,27 +21,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/auth_edit_text_password"
                 style="@style/edit_text_style_default"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:inputType="textPassword"
-                android:singleLine="false"
+                android:theme="@style/edit_text_theme_default"
+                android:layout_width="180dp"
+                android:layout_height="38dp"
+                android:background="@drawable/rectangle_rounded_gray_outline"
+                android:inputType="numberPassword"
                 android:hint="@string/auth_hint_enter_password"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/auth_button_enter"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/auth_button_enter"
@@ -49,5 +50,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/auth_edit_text_password" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/auth_button_tutor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Преподаватель"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/auth_button_student"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/auth_button_student"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Студент"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/auth_button_tutor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
