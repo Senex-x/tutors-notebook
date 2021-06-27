@@ -1,4 +1,4 @@
-package com.example.tutorsnotebook.views.fragments
+package com.example.tutorsnotebook.views.fragments.tutor
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/studentsFragment"
-        android:name="com.example.tutorsnotebook.views.fragments.StudentsFragment"
+        android:name="com.example.tutorsnotebook.views.fragments.tutor.StudentsFragment"
         android:label="StudentsFragment"
         tools:layout="@layout/fragment_students">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="com.example.tutorsnotebook.views.fragments.CalendarFragment"
+        android:name="com.example.tutorsnotebook.views.fragments.tutor.CalendarFragment"
         android:label="CalendarFragment"
         tools:layout="@layout/fragment_calendar">
         <action
@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/notesFragment"
-        android:name="com.example.tutorsnotebook.views.fragments.NotesFragment"
+        android:name="com.example.tutorsnotebook.views.fragments.tutor.NotesFragment"
         android:label="NotesFragment"
         tools:layout="@layout/fragment_notes">
         <action
@@ -43,6 +43,4 @@
             android:id="@+id/action_notesFragment_to_calendarFragment"
             app:destination="@id/calendarFragment" />
     </fragment>
-
-
 </navigation>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#48B9F6</color>
+    <color name="primary">#FF31B7FF</color>
     <color name="primary_background">#D8F0FF</color>
     <color name="secondary_background">#A9DEFF</color>
+    <color name="gray_background_fields">#F1F1F1</color>
     <color name="gray_stroke">#e0e0e0</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -13,5 +14,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_blue">#00BFFF</color>
     <color name="blue_for_buttons">#4FD3FF</color>
+    <color name="green">#54f542</color>
+    <color name="red">#f22727</color>
     <color name="gray_for_password">#D3D3D3</color>
+    <color name="black_for_buttons">#80000000</color>
+    <color name="dark_gray">#959595</color>
 </resources>
