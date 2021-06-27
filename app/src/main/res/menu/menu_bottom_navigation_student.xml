@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/knowledgeFragment"
+        android:icon="@drawable/ic_lightbulb_24"
+        android:title="Знания" />
+
+    <item
+        android:id="@+id/homeworkFragment"
+        android:icon="@drawable/ic_task_24"
+        android:title="Задания" />
+
+    <item
+        android:id="@+id/testsFragment"
+        android:icon="@drawable/ic_checklist_24"
+        android:title="Тесты" />
+</menu>
