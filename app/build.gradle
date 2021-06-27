@@ -43,6 +43,12 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+    //implementation group: 'com.aspose', name: 'aspose-cells', version: '21.5'
+    implementation group: 'com.github.abel533', name: 'EasyXls', version: '1.1.0'
+
+    //TODO: delete deprecated
+    compile (group: 'com.aspose', name: 'aspose-cells', version: '20.6', classifier: 'android.via.java')
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
