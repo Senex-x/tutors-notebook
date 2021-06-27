@@ -6,17 +6,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import com.example.tutorsnotebook.R
 import com.roomorama.caldroid.CaldroidFragment
 import com.roomorama.caldroid.CaldroidGridAdapter
 
-class CalendarAdapter(
+class CaldroidViewAdapter(
     context: Context?, month: Int, year: Int,
     caldroidData: Map<String?, Any?>?,
     extraData: Map<String?, Any?>?
 ) :
     CaldroidGridAdapter(context, month, year, caldroidData, extraData) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        // Get your data here
+        val yourCustomData1 = extraData["YOUR_CUSTOM_DATA_KEY1"] as String? // works
+        val yourCustomData2 = extraData["YOUR_CUSTOM_DATA_KEY2"] as String?
+/*
+        Toast.makeText(
+            context.applicationContext,
+            "Custom data received: \n$yourCustomData1 \n$yourCustomData2",
+            Toast.LENGTH_LONG
+        ).show()*/
+        // Continue to build your customized view
+
         val inflater = context
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var cellView = convertView
@@ -29,6 +41,7 @@ class CalendarAdapter(
         val leftPadding = cellView.paddingLeft
         val bottomPadding = cellView.paddingBottom
         val rightPadding = cellView.paddingRight
+        // TODO: update to receive data from data structure
         val tv1 = cellView.findViewById<View>(R.id.tv1) as TextView
         val tv2 = cellView.findViewById<View>(R.id.tv2) as TextView
         tv1.setTextColor(Color.BLACK)
@@ -67,10 +80,7 @@ class CalendarAdapter(
 
         // Customize for selected dates
         if (selectedDates != null && selectedDates.indexOf(dateTime) != -1) {
-            cellView.setBackgroundColor(
-                resources
-                    .getColor(R.color.caldroid_sky_blue)
-            )
+            cellView.setBackgroundColor(resources.getColor(R.color.caldroid_sky_blue))
             tv1.setTextColor(Color.BLACK)
         } else {
             shouldResetSelectedView = true

@@ -32,6 +32,7 @@ class CalendarFragment : Fragment() {
 
         // Put initializers here
 
+
         return rootView;
     }
 
@@ -54,6 +55,20 @@ class CalendarFragment : Fragment() {
             caldroidFragment?.setTextColorForDate(R.color.white, blueDate)
             caldroidFragment?.setTextColorForDate(R.color.white, greenDate)
         }
+    }
+
+
+    private fun addCustomData() {
+        val yourCustomData1 = "Custom 1"
+        val yourCustomData2 = "Custom 2"
+
+        // To set the extraData:
+        val extraData: MutableMap<String, Any>? = caldroidFragment!!.extraData
+        extraData?.set("YOUR_CUSTOM_DATA_KEY1", yourCustomData1)
+        extraData?.set("YOUR_CUSTOM_DATA_KEY2", yourCustomData2)
+
+// Refresh view
+        caldroidFragment!!.refreshView()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -265,6 +280,7 @@ class CalendarFragment : Fragment() {
             }
             */
 
+        addCustomData()
     }
 
     /**
