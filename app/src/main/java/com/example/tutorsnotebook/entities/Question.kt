@@ -1,7 +1,10 @@
 package com.example.tutorsnotebook.entities
 
-class Question(val problem: String, val answers: MutableList<String>, val rightAnswer: Int) {
-    override fun toString(): String {
-        return "$problem $answers $rightAnswer"
-    }
-}
+data class Question(
+    var description: String = "",
+    var option1: String = "",
+    var option2: String = "",
+    var option3: String = "",
+    var answer: String = "",
+    var userAnswer: String = ""
+)
