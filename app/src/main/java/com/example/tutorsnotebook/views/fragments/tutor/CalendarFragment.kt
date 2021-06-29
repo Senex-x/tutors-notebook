@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.entities.CalendarEvent
+import com.example.tutorsnotebook.utils.FileHandler
+import com.example.tutorsnotebook.utils.GsonHandler
+import com.example.tutorsnotebook.utils.Logger
 import com.example.tutorsnotebook.views.fragments.calendar.CaldroidViewFragment
 import com.roomorama.caldroid.CaldroidFragment
 import hirondelle.date4j.DateTime
@@ -33,9 +36,11 @@ class CalendarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         calendarEvents = getCalendarEvents()
+
         todayDateTime = DateTime.today(TimeZone.getDefault())
         // Won't be needed when events will be from storage
-        removeOldEvents(calendarEvents!!, todayDateTime!!)
+        removeOldEvents(todayDateTime!!)
+
         val caldroidFragment = CaldroidViewFragment(calendarEvents!!)
 
         val args = Bundle()
@@ -56,18 +61,43 @@ class CalendarFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
 
-        removeOldEvents(calendarEvents!!, todayDateTime!!)
-        saveCalendarEvents(calendarEvents!!)
+        removeOldEvents(todayDateTime!!)
+        saveCalendarEvents()
     }
 
     private fun getCalendarEvents(): ArrayList<CalendarEvent> {
         // Should be replaced with DB access
-        val list = generateCalendarEvents()
-        return list
+        val serializedData =
+            FileHandler(requireContext())
+                .getTextFromFile(FileHandler.CALENDAR_STATE_FILE_NAME)
+        return if (serializedData.isNotEmpty()) {
+            GsonHandler.deserializeListOfCalendarEvents(serializedData)
+        } else {
+            ArrayList()
+        }
+    }
+
+    private fun saveCalendarEvents() {
+        // do something to save new list
+        FileHandler(requireContext()).saveTextToFile(
+            FileHandler.CALENDAR_STATE_FILE_NAME,
+            GsonHandler.serializeList(calendarEvents!!)
+        )
+    }
+
+    private fun removeOldEvents(
+        todayDateTime: DateTime
+    ) {
+        val newCalendarEvents = ArrayList<CalendarEvent>()
+        for (event in calendarEvents!!) {
+            if (event.date.lt(todayDateTime)) {
+                newCalendarEvents.add(event)
+            }
+        }
     }
 
     companion object {
-        private fun generateCalendarEvents(): ArrayList<CalendarEvent> {
+        private fun generateCalendarEvents(): ArrayList<CalendarEvent> { // private
             val list = ArrayList<CalendarEvent>()
             for (i in 0..10) {
                 list.add(
@@ -86,19 +116,6 @@ class CalendarFragment : Fragment() {
                 )
             }
             return list
-        }
-
-        private fun saveCalendarEvents(calendarEvents: ArrayList<CalendarEvent>) {
-            // do something to save new list
-        }
-
-        private fun removeOldEvents(calendarEvents: ArrayList<CalendarEvent>, todayDateTime: DateTime) {
-            val newCalendarEvents = ArrayList<CalendarEvent>()
-            for(event in calendarEvents) {
-                if(event.date.lt(todayDateTime)) {
-                    newCalendarEvents.add(event)
-                }
-            }
         }
     }
 }
