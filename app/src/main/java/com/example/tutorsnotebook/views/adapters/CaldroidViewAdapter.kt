@@ -23,18 +23,6 @@ class CaldroidViewAdapter(
 ) :
     CaldroidGridAdapter(activity, month, year, caldroidData, extraData) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        // Get your data here
-        //val yourCustomData1 = extraData["YOUR_CUSTOM_DATA_KEY1"] as String? // works
-        //val yourCustomData2 = extraData["YOUR_CUSTOM_DATA_KEY2"] as String?
-/*
-        Toast.makeText(
-            context.applicationContext,
-            "Custom data received: \n$yourCustomData1 \n$yourCustomData2",
-            Toast.LENGTH_LONG
-        ).show()*/
-        // Continue to build your customized view
-
-
         val inflater = context
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var cellView = convertView
@@ -47,8 +35,7 @@ class CaldroidViewAdapter(
         val leftPadding = cellView.paddingLeft
         val bottomPadding = cellView.paddingBottom
         val rightPadding = cellView.paddingRight
-        // TODO: update to receive data from data structure
-        val tv1 = cellView.findViewById<TextView>(R.id.tv1)
+        val tv1 = cellView.findViewById<TextView>(R.id.calendar_cell_text_view_date)
         val tv2 = cellView.findViewById<TextView>(R.id.tv2)
         tv1.setTextColor(Color.BLACK)
 
@@ -63,7 +50,7 @@ class CaldroidViewAdapter(
                     .getColor(R.color.caldroid_darker_gray)
             )
         }
-        var shouldResetDiabledView = false
+        var shouldResetDisabledView = false
         var shouldResetSelectedView = false
 
         // Customize for disabled dates and date outside min/max dates
@@ -81,7 +68,7 @@ class CaldroidViewAdapter(
                 cellView.setBackgroundResource(R.drawable.rectandle_blue_outline)
             }
         } else {
-            shouldResetDiabledView = true
+            shouldResetDisabledView = true
         }
 
         // Customize for selected dates
@@ -91,7 +78,7 @@ class CaldroidViewAdapter(
         } else {
             shouldResetSelectedView = true
         }
-        if (shouldResetDiabledView && shouldResetSelectedView) {
+        if (shouldResetDisabledView && shouldResetSelectedView) {
             // Customize for today
             if (dateTime == getToday()) {
                 cellView.setBackgroundResource(R.drawable.rectandle_blue_outline)
@@ -100,17 +87,22 @@ class CaldroidViewAdapter(
             }
         }
 
-
         tv1.text = dateTime.day.toString()
-        val eventIndex = getEventIndexIfPresent(datetimeList[position])
-        if (eventIndex != -1) {
-            handlePresentEvent(activity!!, eventList[eventIndex], cellView, tv2, eventList)
-        } else {
-            handleCreateEvent(activity!!, cellView, tv2, eventList, datetimeList[position])
+        if (dateTime.month >= month && dateTime.gteq(getToday())) {
+            val eventIndex = getEventIndexIfPresent(datetimeList[position])
+            if (eventIndex != -1) {
+                handlePresentEvent(activity!!, eventList[eventIndex], cellView, tv2, eventList)
+            } else {
+                handleCreateEvent(activity!!, cellView, tv2, eventList, datetimeList[position])
+            }
+        } else if (dateTime.lt(getToday())){
+            cellView.setBackgroundColor(
+                resources
+                    .getColor(R.color.caldroid_lighter_gray)
+            )
         }
 
-
-        // Somehow after setBackgroundResource, the padding collapse.
+        // Somehow after setBackgroundResource, the padding collapses
         // This is to recover the padding
         cellView.setPadding(
             leftPadding, topPadding, rightPadding,
@@ -118,7 +110,7 @@ class CaldroidViewAdapter(
         )
 
         // Set custom color if required
-        setCustomResources(dateTime, cellView, tv1)
+        //setCustomResources(dateTime, cellView, tv1)
         return cellView
     }
 
