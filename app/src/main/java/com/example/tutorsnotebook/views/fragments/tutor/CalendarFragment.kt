@@ -11,11 +11,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.tutorsnotebook.R
+import com.example.tutorsnotebook.entities.CalendarEvent
 import com.example.tutorsnotebook.views.fragments.calendar.CaldriodViewFragment
 import com.roomorama.caldroid.CaldroidFragment
 import com.roomorama.caldroid.CaldroidListener
+import hirondelle.date4j.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.random.Random
 
 
 class CalendarFragment : Fragment() {
@@ -74,16 +78,7 @@ class CalendarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val formatter = SimpleDateFormat("dd MMM yyyy");
 
-        // Setup caldroid fragment
-        // **** If you want normal CaldroidFragment, use below line ****
-        caldroidFragment = CaldriodViewFragment()
-
-        // //////////////////////////////////////////////////////////////////////
-        // **** This is to show customized fragment. If you want customized
-        // version, uncomment below line ****
-//		 caldroidFragment = new CaldroidSampleCustomFragment();
-
-        // Setup arguments
+        caldroidFragment = CaldriodViewFragment(getCalendarEvents())
 
         // If Activity is created after rotation
         if (savedInstanceState != null) {
@@ -103,20 +98,8 @@ class CalendarFragment : Fragment() {
             args.putBoolean(CaldroidFragment.SIX_WEEKS_IN_CALENDAR, true)
             args.putInt(CaldroidFragment.START_DAY_OF_WEEK, CaldroidFragment.MONDAY); // Tuesday
 
-            // Uncomment this to customize startDayOfWeek
-            // args.putInt(CaldroidFragment.START_DAY_OF_WEEK,
-            // CaldroidFragment.TUESDAY); // Tuesday
-
-            // Uncomment this line to use Caldroid in compact mode
-            // args.putBoolean(CaldroidFragment.SQUARE_TEXT_VIEW_CELL, false);
-
-            // Uncomment this line to use dark theme
-//            args.putInt(CaldroidFragment.THEME_RESOURCE, com.caldroid.R.style.CaldroidDefaultDark);
-
             caldroidFragment?.arguments = args;
         }
-
-        setCustomResourceForDates();
 
         // Attach to the activity
         val t = requireActivity().supportFragmentManager.beginTransaction()
@@ -170,125 +153,119 @@ class CalendarFragment : Fragment() {
 
         // Customize the calendar
         customizeButton.setOnClickListener {
-                if (undo) {
-                    customizeButton.text = "Customize"
-                    textView.text = ""
+            if (undo) {
+                customizeButton.text = "Customize"
+                textView.text = ""
 
-                    // Reset calendar
-                    caldroidFragment?.clearDisableDates()
-                    caldroidFragment?.clearSelectedDates()
-                    caldroidFragment?.setMinDate(null)
-                    caldroidFragment?.setMaxDate(null)
-                    caldroidFragment?.isShowNavigationArrows = true
-                    caldroidFragment?.isEnableSwipe = true
-                    caldroidFragment?.refreshView()
-                    undo = false
-                } else {
-                    undo = true;
-                    customizeButton.setText("Undo")
-                    val cal = Calendar.getInstance()
+                // Reset calendar
+                caldroidFragment?.clearDisableDates()
+                caldroidFragment?.clearSelectedDates()
+                caldroidFragment?.setMinDate(null)
+                caldroidFragment?.setMaxDate(null)
+                caldroidFragment?.isShowNavigationArrows = true
+                caldroidFragment?.isEnableSwipe = true
+                caldroidFragment?.refreshView()
+                undo = false
+            } else {
+                undo = true;
+                customizeButton.setText("Undo")
+                val cal = Calendar.getInstance()
 
-                    // Min date is last 7 days
-                    cal.add(Calendar.DATE, 0)
-                    val minDate = cal.time
+                // Min date is last 7 days
+                cal.add(Calendar.DATE, 0)
+                val minDate = cal.time
 
-                    // Max date is next amount of days
+                // Max date is next amount of days
+                //cal = Calendar.getInstance()
+                cal.add(Calendar.DATE, 60)
+                val maxDate = cal.time
+
+                // Set selected dates
+                // From Date
+                //cal = Calendar.getInstance()
+                cal.add(Calendar.DATE, 2)
+                val fromDate = cal.time
+
+                // To Date
+                //cal = Calendar.getInstance()
+                cal.add(Calendar.DATE, 3)
+                val toDate = cal.time
+
+                // Set disabled dates
+                /*
+                val disabledDates = ArrayList<Date>()
+                for (i in 5..8) {
                     //cal = Calendar.getInstance()
-                    cal.add(Calendar.DATE, 60)
-                    val maxDate = cal.time
+                    cal.add(Calendar.DATE, i)
+                    disabledDates.add(cal.time)
+                }*/
 
-                    // Set selected dates
-                    // From Date
-                    //cal = Calendar.getInstance()
-                    cal.add(Calendar.DATE, 2)
-                    val fromDate = cal.time
+                // Customize
+                caldroidFragment?.setMinDate(minDate)
+                //caldroidFragment?.setMaxDate(maxDate)
+                //caldroidFragment?.setDisableDates(disabledDates)
+                //caldroidFragment?.setSelectedDates(fromDate, toDate)
+                //caldroidFragment?.setShowNavigationArrows(false)
+                //caldroidFragment?.setEnableSwipe(false)
+                caldroidFragment?.refreshView()
 
-                    // To Date
-                    //cal = Calendar.getInstance()
-                    cal.add(Calendar.DATE, 3)
-                    val toDate = cal.time
+                // Move to date
+                // cal = Calendar.getInstance();
+                // cal.add(Calendar.MONTH, 12);
+                // caldroidFragment.moveToDate(cal.getTime());
 
-                    // Set disabled dates
-                    /*
-                    val disabledDates = ArrayList<Date>()
-                    for (i in 5..8) {
-                        //cal = Calendar.getInstance()
-                        cal.add(Calendar.DATE, i)
-                        disabledDates.add(cal.time)
-                    }*/
-
-                    // Customize
-                    caldroidFragment?.setMinDate(minDate)
-                    //caldroidFragment?.setMaxDate(maxDate)
-                    //caldroidFragment?.setDisableDates(disabledDates)
-                    //caldroidFragment?.setSelectedDates(fromDate, toDate)
-                    //caldroidFragment?.setShowNavigationArrows(false)
-                    //caldroidFragment?.setEnableSwipe(false)
-                    caldroidFragment?.refreshView()
-
-                    // Move to date
-                    // cal = Calendar.getInstance();
-                    // cal.add(Calendar.MONTH, 12);
-                    // caldroidFragment.moveToDate(cal.getTime());
-
-                    var text = "Today: " + formatter.format(Date()) + "\n"
-                    text += "Min Date: " + formatter.format(minDate) + "\n"
-                    text += "Max Date: " + formatter.format(maxDate) + "\n"
-                    text += "Select From Date: " + formatter.format(fromDate) + "\n"
-                    text += "Select To Date: " + formatter.format(toDate) + "\n"
+                var text = "Today: " + formatter.format(Date()) + "\n"
+                text += "Min Date: " + formatter.format(minDate) + "\n"
+                text += "Max Date: " + formatter.format(maxDate) + "\n"
+                text += "Select From Date: " + formatter.format(fromDate) + "\n"
+                text += "Select To Date: " + formatter.format(toDate) + "\n"
 /*
                     for (date in disabledDates) {
                         text += "Disabled Date: " + formatter.format(date) + "\n"
                     }
 */
-                    textView.text = text;
-                }
-        }
-
-        val showDialogButton = activity.findViewById<Button>(R.id.show_dialog_button)
-
-        val state = savedInstanceState
-        /*
-        showDialogButton.setOnClickListener {
-                // Setup caldroid to use as dialog
-                dialogCaldroidFragment = CaldroidFragment ()
-                dialogCaldroidFragment?.setCaldroidListener(listener);
-
-                // If activity is recovered from rotation
-                val dialogTag = "CALDROID_DIALOG_FRAGMENT"
-                if (state != null) {
-                    dialogCaldroidFragment?.restoreDialogStatesFromKey(
-                        activity.supportFragmentManager, state,
-                        "DIALOG_CALDROID_SAVED_STATE", dialogTag
-                    )
-                    var args = dialogCaldroidFragment?.getArguments ();
-                    if (args == null) {
-                        args =  Bundle ();
-                        dialogCaldroidFragment?.setArguments(args);
-                    }
-                } else {
-                    // Setup arguments
-                    val bundle =  Bundle();
-                    // Setup dialogTitle
-                    dialogCaldroidFragment?.setArguments(bundle);
-                }
-
-                dialogCaldroidFragment?.show(
-                    activity.supportFragmentManager,
-                    dialogTag
-                )
+                textView.text = text;
             }
-            */
+        }
+    }
 
-        addCustomData()
+    private fun getCalendarEvents(): ArrayList<CalendarEvent> {
+        // Should be replaced with DB access
+        val list = generateCalendarEvents()
+        return list
+    }
+
+    private fun generateCalendarEvents(): ArrayList<CalendarEvent> {
+        val list = ArrayList<CalendarEvent>()
+        for (i in 0..10) {
+            list.add(
+                CalendarEvent(
+                    DateTime(
+                        2021,
+                        Random.nextInt(6, 8),
+                        Random.nextInt(1, 30),
+                        0,
+                        0,
+                        0,
+                        0
+                    ),
+                    "Sample event $i"
+                )
+            )
+        }
+        return list
+    }
+
+    // TODO: implement
+    private fun deleteOldEvents() {
+
     }
 
     /**
      * Save current states of the Caldroid here
      */
 
-    override fun onSaveInstanceState(outState: Bundle)
-    {
+    override fun onSaveInstanceState(outState: Bundle) {
         // TODO Auto-generated method stub
         super.onSaveInstanceState(outState);
 

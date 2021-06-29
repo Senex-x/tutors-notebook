@@ -6,21 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import com.example.tutorsnotebook.R
+import com.example.tutorsnotebook.entities.CalendarEvent
+import com.example.tutorsnotebook.views.fragments.calendar.CalendarCellClickDialogFragment
+import com.example.tutorsnotebook.views.fragments.calendar.CalendarEventClickDialogFragment
 import com.roomorama.caldroid.CaldroidFragment
 import com.roomorama.caldroid.CaldroidGridAdapter
+import hirondelle.date4j.DateTime
 
 class CaldroidViewAdapter(
-    context: Context?, month: Int, year: Int,
+    private val eventList: ArrayList<CalendarEvent>,
+    private val activity: FragmentActivity?, month: Int, year: Int,
     caldroidData: Map<String?, Any?>?,
     extraData: Map<String?, Any?>?
 ) :
-    CaldroidGridAdapter(context, month, year, caldroidData, extraData) {
+    CaldroidGridAdapter(activity, month, year, caldroidData, extraData) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         // Get your data here
-        val yourCustomData1 = extraData["YOUR_CUSTOM_DATA_KEY1"] as String? // works
-        val yourCustomData2 = extraData["YOUR_CUSTOM_DATA_KEY2"] as String?
+        //val yourCustomData1 = extraData["YOUR_CUSTOM_DATA_KEY1"] as String? // works
+        //val yourCustomData2 = extraData["YOUR_CUSTOM_DATA_KEY2"] as String?
 /*
         Toast.makeText(
             context.applicationContext,
@@ -28,6 +33,7 @@ class CaldroidViewAdapter(
             Toast.LENGTH_LONG
         ).show()*/
         // Continue to build your customized view
+
 
         val inflater = context
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -42,8 +48,8 @@ class CaldroidViewAdapter(
         val bottomPadding = cellView.paddingBottom
         val rightPadding = cellView.paddingRight
         // TODO: update to receive data from data structure
-        val tv1 = cellView.findViewById<View>(R.id.tv1) as TextView
-        val tv2 = cellView.findViewById<View>(R.id.tv2) as TextView
+        val tv1 = cellView.findViewById<TextView>(R.id.tv1)
+        val tv2 = cellView.findViewById<TextView>(R.id.tv2)
         tv1.setTextColor(Color.BLACK)
 
         // Get dateTime of this cell
@@ -72,7 +78,7 @@ class CaldroidViewAdapter(
                 cellView.setBackgroundResource(CaldroidFragment.disabledBackgroundDrawable)
             }
             if (dateTime == getToday()) {
-                cellView.setBackgroundResource(R.drawable.red_border_gray_bg)
+                cellView.setBackgroundResource(R.drawable.rectandle_blue_outline)
             }
         } else {
             shouldResetDiabledView = true
@@ -88,13 +94,21 @@ class CaldroidViewAdapter(
         if (shouldResetDiabledView && shouldResetSelectedView) {
             // Customize for today
             if (dateTime == getToday()) {
-                cellView.setBackgroundResource(R.drawable.red_border)
+                cellView.setBackgroundResource(R.drawable.rectandle_blue_outline)
             } else {
                 cellView.setBackgroundResource(R.drawable.cell_bg)
             }
         }
-        tv1.text = "" + dateTime.day
-        tv2.text = "Hi"
+
+
+        tv1.text = dateTime.day.toString()
+        val eventIndex = getEventIndexIfPresent(datetimeList[position])
+        if (eventIndex != -1) {
+            handlePresentEvent(activity!!, eventList[eventIndex], cellView, tv2, eventList)
+        } else {
+            handleCreateEvent(activity!!, cellView, tv2, eventList, datetimeList[position])
+        }
+
 
         // Somehow after setBackgroundResource, the padding collapse.
         // This is to recover the padding
@@ -106,5 +120,63 @@ class CaldroidViewAdapter(
         // Set custom color if required
         setCustomResources(dateTime, cellView, tv1)
         return cellView
+    }
+
+    companion object {
+        fun handleCreateEvent(
+            activity: FragmentActivity,
+            cellView: View,
+            cellTextView: TextView,
+            eventList: ArrayList<CalendarEvent>,
+            dateTime: DateTime
+        ) {
+            cellView.setOnClickListener {
+                val myDialogFragment =
+                    CalendarCellClickDialogFragment(
+                        activity,
+                        cellView,
+                        cellTextView,
+                        eventList,
+                        dateTime
+                    )
+                val manager = activity.supportFragmentManager
+                myDialogFragment.show(manager, "dialogCreate")
+            }
+        }
+
+        fun handlePresentEvent(
+            activity: FragmentActivity,
+            calendarEvent: CalendarEvent,
+            cellView: View,
+            cellTextView: TextView,
+            eventList: ArrayList<CalendarEvent>
+        ) {
+            cellView.setBackgroundResource(R.drawable.rectangle_red_outline)
+            cellView.setOnClickListener {
+                val myDialogFragment =
+                    CalendarEventClickDialogFragment(
+                        activity,
+                        calendarEvent,
+                        cellView,
+                        cellTextView,
+                        eventList
+                    )
+                val manager = activity.supportFragmentManager
+                myDialogFragment.show(manager, "dialogEvent")
+            }
+        }
+    }
+
+    private fun getEventIndexIfPresent(currentDateTime: DateTime): Int {
+        for ((i, event) in eventList.withIndex()) {
+            val dateTimeFromList = event.date
+            if (currentDateTime.year == dateTimeFromList.year &&
+                currentDateTime.month == dateTimeFromList.month &&
+                currentDateTime.day == dateTimeFromList.day
+            ) {
+                return i
+            }
+        }
+        return -1
     }
 }

@@ -24,17 +24,10 @@
 
             <Button
                 android:id="@+id/customize_button"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="customize"/>
 
-            <Button
-                android:id="@+id/show_dialog_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="show_dialog"/>
         </LinearLayout>
 
         <TextView
