@@ -36,6 +36,7 @@
             android:layout_marginStart="@dimen/text_size_default"
             android:maxWidth="230dp"
             android:text="name"
+            android:textStyle="bold"
             android:textSize="@dimen/text_size_default"
             app:layout_constraintStart_toEndOf="@+id/list_item_student_image_view_payment_status"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/text_size_default"
             android:text="100"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/list_item_student_image_view_score_status"
             app:layout_constraintTop_toTopOf="parent" />
 
