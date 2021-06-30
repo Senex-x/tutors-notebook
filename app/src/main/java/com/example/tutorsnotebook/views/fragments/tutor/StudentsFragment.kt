@@ -30,10 +30,14 @@ class StudentsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        recyclerView = view.findViewById(R.id.students_recycler_view)
+        initRecyclerView(view)
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun initRecyclerView(rootView: View) {
+        recyclerView = rootView.findViewById(R.id.students_recycler_view)
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
         recyclerView?.adapter = StudentsRecyclerAdapter(getCardsData(), requireContext())
-        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun generateRandomCardsData(): ArrayList<Student> {
