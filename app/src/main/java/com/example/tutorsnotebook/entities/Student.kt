@@ -1,11 +1,11 @@
 package com.example.tutorsnotebook.entities
 
 class Student(
-    var key: String,
-    var name: String,
-    var surname: String,
-    var studentPhone: Int,
-    var parentPhone: Int,
+    var key: String = "key",
+    var name: String = "name",
+    var surname: String = "surname",
+    var studentPhone: Int = 0,
+    var parentPhone: Int = 0,
     var isPayed: Boolean = false,
     var avgScore: Int = 0,
     // to update average score correctly
@@ -16,6 +16,10 @@ class Student(
     // sample demonstration of adding a score of a new student's mark
     fun addScore(newScore: Int) {
         avgScore = (avgScore * scoreCounter + newScore) / ++scoreCounter
+    }
+
+    override fun toString(): String {
+        return "Student(key='$key', name='$name', surname='$surname', studentPhone=$studentPhone, parentPhone=$parentPhone, isPayed=$isPayed, avgScore=$avgScore, scoreCounter=$scoreCounter, scoreStatus=$scoreStatus)"
     }
 
     enum class ScoreStatus {
