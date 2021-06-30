@@ -1,5 +1,6 @@
 package com.example.tutorsnotebook.views.fragments.tutor
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,15 +27,20 @@ class StudentInfoFragment : Fragment() {
     }
 
     private fun initUi(rootView: View, args: Bundle?) {
-        val paymentStatusImageView =
-            rootView.findViewById<ImageView>(R.id.student_info_image_view_payment_status)
-        val nameTextView = rootView.findViewById<TextView>(R.id.student_info_edit_text_name)
-        val scoreTextView = rootView.findViewById<TextView>(R.id.student_info_text_view_score)
-        val parentNameTextView =
-            rootView.findViewById<TextView>(R.id.student_info_edit_text_parent_name)
-        val parentPhoneTextView =
-            rootView.findViewById<TextView>(R.id.student_info_edit_text_parent_phone)
-        val loginTextView = rootView.findViewById<TextView>(R.id.student_info_text_view_login)
+        val paymentStatusImageView = rootView
+            .findViewById<ImageView>(R.id.student_info_image_view_payment_status)
+        val scoreStatusImageView =
+            rootView.findViewById<ImageView>(R.id.student_info_image_view_score_status)
+        val nameTextView = rootView
+            .findViewById<TextView>(R.id.student_info_edit_text_name)
+        val scoreTextView = rootView
+            .findViewById<TextView>(R.id.student_info_text_view_score)
+        val parentNameTextView = rootView
+            .findViewById<TextView>(R.id.student_info_edit_text_parent_name)
+        val parentPhoneTextView = rootView
+            .findViewById<TextView>(R.id.student_info_edit_text_parent_phone)
+        val loginTextView = rootView
+            .findViewById<TextView>(R.id.student_info_text_view_login)
 
         if (args != null) {
             val serializedStudent = args.getString("data")
@@ -48,8 +54,36 @@ class StudentInfoFragment : Fragment() {
                 loginTextView.text = student.key
 
                 setPaymentStatusImage(paymentStatusImageView, student.isPayed)
+                setScoreStatusImage(scoreStatusImageView, student.scoreStatus)
             }
         }
+    }
+
+    private fun setScoreStatusImage(imageView: ImageView, status: Student.ScoreStatus) {
+        val drawableId: Int
+        val colorId: Int
+
+        when (status) {
+            Student.ScoreStatus.INCREASES -> {
+                drawableId = R.drawable.ic_arrow_up_28
+                colorId = R.color.green
+            }
+            Student.ScoreStatus.STAYS -> {
+                drawableId = R.drawable.ic_minus_24
+                colorId = R.color.dark_gray
+            }
+            Student.ScoreStatus.DECREASES -> {
+                drawableId = R.drawable.ic_arrow_down_28
+                colorId = R.color.red
+            }
+        }
+
+        ImageHandler.setColoredImage(
+            requireContext(),
+            imageView,
+            drawableId,
+            colorId
+        )
     }
 
     private fun setPaymentStatusImage(imageView: ImageView, status: Boolean) {
