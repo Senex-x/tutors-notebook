@@ -206,15 +206,4 @@
         app:layout_constraintBottom_toTopOf="@+id/student_bottom_navigation_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/student_info_text_view_login" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/student_bottom_navigation_view"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom_navigation_main" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

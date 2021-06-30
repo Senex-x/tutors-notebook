@@ -25,10 +25,10 @@ class StudentsRecyclerAdapter(private val data: List<Student>, private val conte
 
         init {
             paymentImageView =
-                itemView.findViewById(R.id.list_item_student_image_view_payment_status)
-            nameTextView = itemView.findViewById(R.id.list_item_student_edit_text_name)
-            scoreTextView = itemView.findViewById(R.id.list_item_student_edit_text_score)
-            statusImageView = itemView.findViewById(R.id.list_item_student_image_view_score_status)
+                itemView.findViewById(R.id.student_info_image_view_payment_status)
+            nameTextView = itemView.findViewById(R.id.student_info_edit_text_name)
+            scoreTextView = itemView.findViewById(R.id.student_info_text_view_score)
+            statusImageView = itemView.findViewById(R.id.student_info_image_view_score_status)
         }
     }
 
