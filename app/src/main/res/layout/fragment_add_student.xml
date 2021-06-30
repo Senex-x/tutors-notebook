@@ -1,152 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.fragments.tutor.AddStudentFragment">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id="@+id/header_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="90dp"
+        android:background="@drawable/header_box"
+        android:gravity="center"
+        android:text="Регистрация ученика"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/header_title"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:background="@drawable/header_box"
-            android:gravity="center"
-            android:text="Регистрация ученика"
-            android:textAlignment="center"
-            android:textSize="36sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/student_name_field"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/round_buttons"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:inputType="text"
+        android:text="Имя ученика"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title" />
 
-        <EditText
-            android:id="@+id/student_name_field"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/round_buttons"
-            android:gravity="center|center_horizontal|center_vertical"
-            android:inputType="text"
-            android:text="Имя ученика"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_title" />
+    <EditText
+        android:id="@+id/student_surname_field"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/round_buttons"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:inputType="text"
+        android:text="Фамилия ученика"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/student_name_field" />
 
-        <EditText
-            android:id="@+id/student_surname_field"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/round_buttons"
-            android:gravity="center|center_horizontal|center_vertical"
-            android:inputType="text"
-            android:text="Фамилия ученика"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/student_name_field" />
+    <EditText
+        android:id="@+id/student_number_field"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_buttons"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:inputType="number"
+        android:text="Телефон ученика"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/student_surname_field" />
 
-        <EditText
-            android:id="@+id/student_number_field"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/round_buttons"
-            android:gravity="center|center_horizontal|center_vertical"
-            android:inputType="number"
-            android:text="Телефон ученика"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/student_surname_field" />
+    <EditText
+        android:id="@+id/parent_name_field"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/round_buttons"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:inputType="text"
+        android:text="Имя родителя"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/student_number_field" />
 
-        <EditText
-            android:id="@+id/parent_name_field"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/round_buttons"
-            android:gravity="center|center_horizontal|center_vertical"
-            android:inputType="text"
-            android:text="Имя родителя"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/student_number_field" />
+    <EditText
+        android:id="@+id/parent_surname_field"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/round_buttons"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:inputType="text"
+        android:text="Фамилия родителя"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parent_name_field" />
 
-        <EditText
-            android:id="@+id/parent_surname_field"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/round_buttons"
-            android:gravity="center|center_horizontal|center_vertical"
-            android:inputType="text"
-            android:text="Фамилия родителя"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/parent_name_field" />
-
-        <EditText
-            android:id="@+id/parent_number_field"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/round_buttons"
-            android:gravity="center|center_horizontal|center_vertical"
-            android:inputType="text"
-            android:text="Телефон родителя"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/parent_surname_field" />
+    <EditText
+        android:id="@+id/parent_number_field"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/round_buttons"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:inputType="text"
+        android:text="Телефон родителя"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parent_surname_field" />
 
 
-        <Button
-            android:id="@+id/generate_login_button"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:text="Сгенерировать логин"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/parent_number_field" />
+    <Button
+        android:id="@+id/generate_login_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="Сгенерировать логин"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parent_number_field" />
 
-        <Button
-            android:id="@+id/register_button"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:text="Зарегистрировать"
-            style="?android:attr/borderlessButtonStyle"
-            android:background="@drawable/round_buttons"
-            app:layout_constraintBottom_toTopOf="@+id/student_bottom_navigation_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/generate_login_button" />
+    <Button
+        android:id="@+id/register_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/round_buttons"
+        android:text="Зарегистрировать"
+        app:layout_constraintBottom_toTopOf="@+id/student_bottom_navigation_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/generate_login_button" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/student_bottom_navigation_view"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/blue_for_buttons"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_bottom_navigation_main" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
