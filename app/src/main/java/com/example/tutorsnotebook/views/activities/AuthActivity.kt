@@ -35,8 +35,11 @@ class AuthActivity : AppCompatActivity() {
     private fun initAuthButton() {
         card_view.auth_button_enter.setOnClickListener {
             Database.getAllStudentKeys {
-                if (card_view.auth_edit_text_password.text.toString() in it) {
-                    Toast.makeText(this, "SUCCESS", Toast.LENGTH_LONG).show() //debug
+                if (card_view.auth_edit_text_password.text.toString() == "0000") {
+                    Toast.makeText(this, "SUCCESS TEACHER", Toast.LENGTH_LONG).show() //debug
+                    startActivity(Intent(this, MainActivity::class.java))
+                } else if (card_view.auth_edit_text_password.text.toString() in it) {
+                    Toast.makeText(this, "SUCCESS STUDENT", Toast.LENGTH_LONG).show() //debug
                     val intent = Intent(this, StudentActivity::class.java).apply {
                         putExtra("key", card_view.auth_edit_text_password.text.toString())
                     }
