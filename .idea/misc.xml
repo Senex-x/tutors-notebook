@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/java/tutors_notebook/app/src/main/res/drawable-v24/ic_add.xml" value="0.3655" />
+        <entry key="..\:/java/tutors_notebook/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3655" />
+        <entry key="..\:/java/tutors_notebook/app/src/main/res/drawable/ic_add.xml" value="0.3655" />
+        <entry key="..\:/java/tutors_notebook/app/src/main/res/drawable/ic_note_go_back.xml" value="0.2975" />
+        <entry key="..\:/java/tutors_notebook/app/src/main/res/layout/fragment_create_note.xml" value="0.24864130434782608" />
+        <entry key="..\:/java/tutors_notebook/app/src/main/res/layout/fragment_notes.xml" value="0.28804347826086957" />
+        <entry key="..\:/java/tutors_notebook/app/src/main/res/layout/fragment_students.xml" value="0.28804347826086957" />
+        <entry key="..\:/java/tutors_notebook/app/src/main/res/layout/fragment_tests.xml" value="0.36666666666666664" />
+        <entry key="..\:/java/tutors_notebook/app/src/main/res/layout/item_note.xml" value="0.36666666666666664" />
+        <entry key="..\:/java/tutors_notebook/app/src/main/res/layout/reg_temp.xml" value="0.358695652173913" />
+        <entry key="..\:/java/tutors_notebook/app/src/main/res/layout/stud_pers_info.xml" value="0.358695652173913" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
