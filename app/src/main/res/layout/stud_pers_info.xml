@@ -7,7 +7,7 @@
     android:background="@color/primary_background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/header_box"
+        android:id="@+id/student_info_layout_header"
         android:layout_width="match_parent"
         android:layout_height="88dp"
         android:layout_gravity="center_vertical"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/list_item_student_image_view_payment_status"
+            android:id="@+id/student_info_image_view_payment_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_check_circle_24"
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/list_item_student_edit_text_name"
+            android:id="@+id/student_info_edit_text_name"
             style="@style/text_style_default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,11 +39,11 @@
             android:textSize="24dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/list_item_student_image_view_payment_status"
+            app:layout_constraintStart_toEndOf="@+id/student_info_image_view_payment_status"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/list_item_student_edit_text_score"
+            android:id="@+id/student_info_text_view_score"
             style="@style/text_style_default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,11 +51,11 @@
             android:text="100"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/list_item_student_image_view_score_status"
+            app:layout_constraintEnd_toStartOf="@+id/student_info_image_view_score_status"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/list_item_student_image_view_score_status"
+            android:id="@+id/student_info_image_view_score_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_up_28"
@@ -67,7 +67,7 @@
 
 
     <TextView
-        android:id="@+id/parent_info"
+        android:id="@+id/student_info_edit_text_parent_name"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_marginTop="5dp"
@@ -80,10 +80,10 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_box" />
+        app:layout_constraintTop_toBottomOf="@+id/student_info_layout_header" />
 
     <TextView
-        android:id="@+id/student_number"
+        android:id="@+id/student_info_text_view_phone"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_marginTop="5dp"
@@ -95,10 +95,10 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/parent_info" />
+        app:layout_constraintTop_toBottomOf="@+id/student_info_edit_text_parent_name" />
 
     <Button
-        android:id="@+id/add_test"
+        android:id="@+id/student_info_button_add_test"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="72dp"
@@ -110,10 +110,10 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/student_number" />
+        app:layout_constraintTop_toBottomOf="@+id/student_info_text_view_phone" />
 
     <Button
-        android:id="@+id/homeworks"
+        android:id="@+id/student_info_button_homeworks"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="72dp"
@@ -125,10 +125,10 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_test" />
+        app:layout_constraintTop_toBottomOf="@+id/student_info_button_add_test" />
 
     <Button
-        android:id="@+id/test_results"
+        android:id="@+id/student_info_button_test_results"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="72dp"
@@ -140,10 +140,10 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeworks" />
+        app:layout_constraintTop_toBottomOf="@+id/student_info_button_homeworks" />
 
     <Button
-        android:id="@+id/knowledge"
+        android:id="@+id/student_info_button_add_knowledge"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="72dp"
@@ -155,10 +155,10 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/test_results" />
+        app:layout_constraintTop_toBottomOf="@+id/student_info_button_test_results" />
 
     <TextView
-        android:id="@+id/personal_login"
+        android:id="@+id/student_info_text_view_login"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_marginTop="5dp"
@@ -171,7 +171,7 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/knowledge" />
+        app:layout_constraintTop_toBottomOf="@+id/student_info_button_add_knowledge" />
 
 
     <Button
@@ -185,10 +185,10 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/student_bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/personal_login" />
+        app:layout_constraintTop_toBottomOf="@+id/student_info_text_view_login" />
 
     <Button
-        android:id="@+id/pay_button"
+        android:id="@+id/pay_button_button_pay"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -198,7 +198,7 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/student_bottom_navigation_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/personal_login" />
+        app:layout_constraintTop_toBottomOf="@+id/student_info_text_view_login" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/student_bottom_navigation_view"
