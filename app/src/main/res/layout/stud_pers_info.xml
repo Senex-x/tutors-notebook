@@ -6,63 +6,70 @@
     android:layout_height="match_parent"
     android:background="@color/primary_background">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header_box"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="88dp"
+        android:layout_gravity="center_vertical"
         android:background="@drawable/header_box"
+        android:paddingStart="16dp"
+        android:paddingTop="@dimen/size_medium"
+        android:paddingEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/name_field"
-        android:layout_width="wrap_content"
-        android:layout_height="90dp"
-        android:layout_marginStart="12dp"
-        android:gravity="center"
-        android:inputType="text"
-        android:text="Имя ученика"
-        android:textColor="#000000"
-        android:textSize="28sp"
-        app:autoSizeTextType="none"
-        app:layout_constraintBottom_toBottomOf="@+id/header_box"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/list_item_student_image_view_payment_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check_circle_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/rating_field"
-        android:layout_width="wrap_content"
-        android:layout_height="90dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
-        android:inputType="number"
-        android:text="94"
-        android:textColor="#000000"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="@+id/header_box"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/list_item_student_edit_text_name"
+            style="@style/text_style_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_size_default"
+            android:maxWidth="232dp"
+            android:text="Абоба Обэмович"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/list_item_student_image_view_payment_status"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/list_item_student_edit_text_score"
+            style="@style/text_style_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/text_size_default"
+            android:text="100"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/list_item_student_image_view_score_status"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/arrow_field"
-        android:layout_width="wrap_content"
-        android:layout_height="90dp"
-        android:gravity="center"
-        android:inputType="text"
-        android:text="↑"
-        android:textColor="#000000"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="@+id/name_field"
-        app:layout_constraintEnd_toEndOf="@+id/header_box"
-        app:layout_constraintStart_toEndOf="@+id/rating_field"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/list_item_student_image_view_score_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_up_28"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/parent_info"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="72dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/round_buttons"
         android:gravity="center|center_horizontal|center_vertical"
@@ -78,7 +85,7 @@
     <TextView
         android:id="@+id/student_number"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="72dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/round_buttons"
         android:gravity="center|center_horizontal|center_vertical"
@@ -94,7 +101,7 @@
         android:id="@+id/add_test"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="72dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/round_buttons"
         android:text="Загрузка тестов"
@@ -109,7 +116,7 @@
         android:id="@+id/homeworks"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="72dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/round_buttons"
         android:text="Домашние работы"
@@ -124,7 +131,7 @@
         android:id="@+id/test_results"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="72dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/round_buttons"
         android:text="Результаты тестов"
@@ -139,7 +146,7 @@
         android:id="@+id/knowledge"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="72dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/round_buttons"
         android:text="Каталог знаний"
@@ -153,7 +160,7 @@
     <TextView
         android:id="@+id/personal_login"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="72dp"
         android:layout_marginTop="5dp"
         android:background="#804FD3FF"
         android:gravity="center|center_horizontal|center_vertical"
@@ -197,7 +204,7 @@
         android:id="@+id/student_bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/blue_for_buttons"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

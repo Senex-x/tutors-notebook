@@ -8,10 +8,11 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="300dp"
         android:layout_height="180dp"
-        app:cardCornerRadius="10dp"
 
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,20 +21,20 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/auth_edit_text_password"
                 style="@style/edit_text_style_default"
-                android:theme="@style/edit_text_theme_default"
                 android:layout_width="180dp"
                 android:layout_height="38dp"
                 android:background="@drawable/rectangle_rounded_gray_outline"
-                android:inputType="numberPassword"
                 android:hint="@string/auth_hint_enter_password"
+                android:inputType="numberPassword"
                 android:textAlignment="center"
+                android:theme="@style/edit_text_theme_default"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,8 +49,22 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/auth_edit_text_password" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="210sp"
+        android:textSize="18sp"
+        android:text="Восстановить пароль"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <Button
         android:id="@+id/auth_button_tutor"
@@ -68,5 +83,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/auth_button_tutor" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
