@@ -6,10 +6,13 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.ktx.database
 
-class Database {
+object Database {
     var database: DatabaseReference = Firebase.database.reference
     //TODO: refactor...
     //TODO: foolproof (???)
+
+    init {
+    }
 
     fun writeNewStudent(student: Student) {
         getAllStudentKeys {
