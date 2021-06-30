@@ -14,16 +14,29 @@
         android:paddingTop="4dp"
         tools:listitem="@layout/list_item_student" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/students_fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/white"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@null" />
+
     <Button
         android:id="@+id/add_button"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/fab_button"
         android:text="+"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="20dp"
         android:textSize="32sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
