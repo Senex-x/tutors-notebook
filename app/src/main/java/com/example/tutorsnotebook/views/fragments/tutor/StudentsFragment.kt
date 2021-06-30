@@ -50,7 +50,8 @@ class StudentsFragment : Fragment() {
     }
 
     private fun getCardsData(): ArrayList<Student> {
-        return generateRandomCardsData()
+        studentsList = generateRandomCardsData()
+        return studentsList!!
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,7 +69,7 @@ class StudentsFragment : Fragment() {
                 recyclerView!!,
                 object : StudentsRecyclerClickListener.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
-                        openStudent(studentsList!![position])
+                        openStudent(studentsList!![position], view!!)
                     }
 
                     override fun onLongItemClick(view: View?, position: Int) {
@@ -79,8 +80,9 @@ class StudentsFragment : Fragment() {
         )
     }
 
-    private fun openStudent(student: Student) {
-
+    private fun openStudent(student: Student, view: View) {
+        Navigation.findNavController(view)
+            .navigate(R.id.action_studentsFragment_to_studentInfoFragment)
     }
 
     private fun generateRandomCardsData(): ArrayList<Student> {

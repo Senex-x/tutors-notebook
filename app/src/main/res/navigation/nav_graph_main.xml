@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_studentsFragment_to_addStudentFragment"
             app:destination="@id/addStudentFragment" />
+        <action
+            android:id="@+id/action_studentsFragment_to_studentInfoFragment"
+            app:destination="@id/studentInfoFragment" />
     </fragment>
 
     <fragment
@@ -59,6 +62,21 @@
             app:destination="@id/calendarFragment" />
         <action
             android:id="@+id/action_addStudentFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentInfoFragment"
+        android:name="com.example.tutorsnotebook.views.fragments.tutor.StudentInfoFragment"
+        android:label="StudentInfoFragment"
+        tools:layout="@layout/fragment_student_info">
+        <action
+            android:id="@+id/action_studentInfoFragment_to_studentsFragment"
+            app:destination="@id/studentsFragment" />
+        <action
+            android:id="@+id/action_studentInfoFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_studentInfoFragment_to_notesFragment"
             app:destination="@id/notesFragment" />
     </fragment>
 </navigation>
