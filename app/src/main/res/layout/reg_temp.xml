@@ -126,23 +126,15 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
-        android:text="Зарегистрировать"
-        style="?android:attr/borderlessButtonStyle"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/round_buttons"
-        app:layout_constraintBottom_toTopOf="@+id/student_bottom_navigation_view"
+        android:text="Зарегистрировать"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/generate_login_button" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/student_bottom_navigation_view"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/blue_for_buttons"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom_navigation_main" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
