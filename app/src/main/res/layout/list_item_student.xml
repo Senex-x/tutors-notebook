@@ -9,6 +9,7 @@
     android:layout_marginEnd="@dimen/size_default"
     android:layout_marginBottom="@dimen/size_small"
     android:background="@color/white"
+    android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="10dp"
     tools:context=".views.activities.MainActivity">
 
@@ -36,8 +37,8 @@
             android:layout_marginStart="@dimen/text_size_default"
             android:maxWidth="230dp"
             android:text="name"
-            android:textStyle="bold"
             android:textSize="@dimen/text_size_default"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/list_item_student_image_view_payment_status"
             app:layout_constraintTop_toTopOf="parent" />
 
