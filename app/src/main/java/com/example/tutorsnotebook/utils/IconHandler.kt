@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 
-class ImageHandler {
+class IconHandler {
     companion object {
         fun setColoredImage(context: Context, imageView: ImageView, imageId: Int, colorId: Int) {
             val vectorImage: Drawable =
