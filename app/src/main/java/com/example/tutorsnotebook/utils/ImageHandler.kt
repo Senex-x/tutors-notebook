@@ -21,7 +21,7 @@ class ImageHandler {
 
         fun compressBitmap(bitmap: Bitmap, quality: Int): Bitmap {
             val out = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, quality, out)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, out)
             return BitmapFactory.decodeStream(ByteArrayInputStream(out.toByteArray()))
         }
 

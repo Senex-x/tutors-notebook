@@ -15,6 +15,8 @@ import com.example.tutorsnotebook.utils.GsonHandler
 import com.example.tutorsnotebook.utils.IconHandler
 
 class StudentInfoFragment : Fragment() {
+    private var studentKey: String = ""
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,6 +50,7 @@ class StudentInfoFragment : Fragment() {
             if (serializedStudent != null) {
                 val student = GsonHandler.deserializeObject<Student>(serializedStudent)
 
+                studentKey = student.key
                 nameTextView.text = student.name + " " + student.surname
                 scoreTextView.text = student.avgScore.toString()
                 parentNameTextView.text = student.parentName
@@ -62,8 +65,14 @@ class StudentInfoFragment : Fragment() {
         val homeworksButton = rootView
             .findViewById<Button>(R.id.student_info_button_homeworks)
         homeworksButton.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString(
+                "student-key",
+                studentKey
+            )
+
             Navigation.findNavController(it)
-                .navigate(R.id.action_studentInfoFragment_to_checkHomeworkFragment)
+                .navigate(R.id.action_studentInfoFragment_to_checkHomeworkFragment, bundle)
         }
     }
 

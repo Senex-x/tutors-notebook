@@ -23,6 +23,7 @@
                 android:id="@+id/check_homework_layout_images"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:padding="8dp">
             </LinearLayout>

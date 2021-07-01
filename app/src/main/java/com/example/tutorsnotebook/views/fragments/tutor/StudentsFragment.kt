@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tutorsnotebook.R
+import com.example.tutorsnotebook.entities.Homework
 import com.example.tutorsnotebook.entities.Student
 import com.example.tutorsnotebook.utils.GsonHandler
 import com.example.tutorsnotebook.utils.IconHandler
@@ -110,6 +111,20 @@ class StudentsFragment : Fragment() {
                 )
             )
         }
+        students.add(
+            Student(
+                "1576",
+                "Name",
+                "Surname",
+                0,
+                "Parent name",
+                0,
+                Random.nextBoolean(),
+                Random.nextInt(100),
+                10,
+                Student.ScoreStatus.values()[Random.nextInt(3)]
+            )
+        )
         return students
     }
 }

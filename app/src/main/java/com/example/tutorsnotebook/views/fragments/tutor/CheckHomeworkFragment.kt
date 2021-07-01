@@ -1,6 +1,5 @@
 package com.example.tutorsnotebook.views.fragments.tutor
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,14 +12,17 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.database.Database
+import com.example.tutorsnotebook.database.OnDataGetListener
+import com.example.tutorsnotebook.entities.Homework
 import com.example.tutorsnotebook.utils.ImageHandler
-import com.example.tutorsnotebook.utils.PreferencesHandler
+import com.example.tutorsnotebook.utils.Logger
 import com.example.tutorsnotebook.utils.Toaster
+import com.google.firebase.database.DataSnapshot
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class CheckHomeworkFragment : Fragment() {
-    private val studentKey = PreferencesHandler(requireActivity()).getStudentKey()
+    private var studentKey: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +30,8 @@ class CheckHomeworkFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_check_homework, container, false)
+
+        studentKey = requireArguments().getString("student-key")!!
 
         initUi(rootView)
 
@@ -53,19 +57,21 @@ class CheckHomeworkFragment : Fragment() {
         }
 
         // Gonna take time
-        GlobalScope.launch {
-            handleHomeworkDisplay(imagesPreviewLayout)
-        }
+        handleHomeworkDisplay(imagesPreviewLayout)
     }
 
     private fun handleHomeworkDisplay(parent: LinearLayout) {
-        val homework = Database.getHomeworkFromDatabase(studentKey)
-        val images = homework.images
-        for (image in images) {
-            addNewImageView(parent).setImageBitmap(
-                ImageHandler.stringToBitmap(image)
-            )
-        }
+        Database.getHomeworkFromDatabase(studentKey, object : OnDataGetListener {
+            override fun onSuccess(data: DataSnapshot?) {
+                val homework = data!!.getValue(Homework::class.java)!!
+                val images = homework.images
+                for (image in images) {
+                    addNewImageView(parent).setImageBitmap(
+                        ImageHandler.stringToBitmap(image)
+                    )
+                }
+            }
+        })
     }
 
     private fun saveScoreToDatabase(score: Int) {

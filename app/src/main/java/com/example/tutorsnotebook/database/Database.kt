@@ -1,12 +1,11 @@
 package com.example.tutorsnotebook.database
 
-import android.util.Log
 import com.example.tutorsnotebook.entities.Homework
 import com.example.tutorsnotebook.entities.Student
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.ktx.database
-import java.util.ArrayList
+import com.google.firebase.ktx.Firebase
+
 
 object Database {
     var database: DatabaseReference = Firebase.database.reference
@@ -38,7 +37,7 @@ object Database {
     fun getAllStudents(callback: (List<Student>) -> Unit) {
         database.child("students").get().addOnSuccessListener {
             if (it.exists()) {
-                var result = mutableListOf<Student>()
+                val result = mutableListOf<Student>()
                 for (child in it.children) {
                     result.add(child.getValue(Student::class.java)!!)
                 }
@@ -48,9 +47,9 @@ object Database {
     }
 
     fun getAllStudentKeys(callback: (Set<String>) -> Unit) {
-        var keys = mutableSetOf<String>()
-        getAllStudents() { result ->
-            if (result.size > 0) {
+        val keys = mutableSetOf<String>()
+        getAllStudents { result ->
+            if (result.isNotEmpty()) {
                 for (student in result) {
                     keys.add(student.key)
                 }
@@ -59,17 +58,20 @@ object Database {
         }
     }
 
-    fun putHomework(studentKey: String, images: ArrayList<String>) {
-        TODO("Not yet implemented")
+    // Deliberately overriding homeworks
+    fun putHomework(homework: Homework) {
+        database.child("homeworks").child(homework.key).setValue(homework)
     }
 
     fun putHomeworkScore(studentKey: String, score: Int) {
         TODO("Not yet implemented")
     }
 
-    fun getHomeworkFromDatabase(studentKey: String): Homework {
-        TODO("Not yet implemented")
+    fun getHomeworkFromDatabase(studentKey: String, listener: OnDataGetListener) {
+        database.child("homeworks").child(studentKey).get().addOnSuccessListener {
+            if (it.exists()) {
+                listener.onSuccess(it)
+            }
+        }
     }
-
-
 }

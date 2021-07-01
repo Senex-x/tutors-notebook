@@ -23,8 +23,9 @@
                 android:id="@+id/check_homework_layout_images"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:padding="8dp"/>
+                android:padding="8dp" />
         </ScrollView>
     </androidx.cardview.widget.CardView>
 
@@ -50,9 +51,9 @@
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:hint="Поставьте оценку"
+                android:importantForAutofill="no"
                 android:inputType="number"
-                android:theme="@style/edit_text_theme_default"
-                android:importantForAutofill="no" />
+                android:theme="@style/edit_text_theme_default" />
 
             <Button
                 android:id="@+id/check_homework_button_submit"

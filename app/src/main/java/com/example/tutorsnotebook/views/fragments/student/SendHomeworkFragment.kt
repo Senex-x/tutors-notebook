@@ -12,7 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.database.Database
+import com.example.tutorsnotebook.entities.Homework
 import com.example.tutorsnotebook.utils.ImageHandler
+import com.example.tutorsnotebook.utils.Logger
 import com.example.tutorsnotebook.utils.PreferencesHandler
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -81,14 +83,19 @@ class SendHomeworkFragment : Fragment() {
         val context = requireContext()
         val images = ArrayList<String>()
         for (imageUri in newImagesUriList) {
-            images.add(ImageHandler.imageToString(imageUri, context))
+            val bitmap = ImageHandler.getBitmapByUri(imageUri, context)
+            val compressedBitmap = ImageHandler.compressBitmap(bitmap, 0)
+            val imageString = ImageHandler.imageToString(compressedBitmap)
+            images.add(imageString)
         }
         saveHomeworkToDatabase(images)
     }
 
     private fun saveHomeworkToDatabase(images: ArrayList<String>) {
         val studentKey = PreferencesHandler(requireActivity()).getStudentKey()
-        Database.putHomework(studentKey, images)
+        val homework = Homework(studentKey, -1, images, "message")
+        Logger.d("Sending homework to database")
+        Database.putHomework(homework)
     }
 
     private fun addNewImageView(parent: LinearLayout): ImageView {
