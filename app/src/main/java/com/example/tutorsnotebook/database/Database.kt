@@ -63,6 +63,7 @@ object Database {
     fun addRandomUsers() {
         val faker = Faker()
         for (i in 0..10) {
+            //TODO: mb add russian numbers
             writeNewStudent(
                 Student(
                     key = Student.generateKey(setOf()),

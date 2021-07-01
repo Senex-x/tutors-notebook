@@ -54,10 +54,10 @@ class StudentsFragment : Fragment() {
         )
     }
 
-    private fun getCardsData(): ArrayList<Student> {
-        studentsList = generateRandomCardsData()
-        return studentsList!!
-    }
+//    private fun getCardsData(): ArrayList<Student> {
+//        studentsList = generateRandomCardsData()
+//        return studentsList!!
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView(view)
@@ -67,9 +67,11 @@ class StudentsFragment : Fragment() {
     private fun initRecyclerView(rootView: View) {
         recyclerView = rootView.findViewById(R.id.students_recycler_view)
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
+        //studentsList = generateRandomCardsData()
         Database.getAllStudents {
             recyclerView?.adapter = StudentsRecyclerAdapter(it, requireContext())
             studentsList = ArrayList(it)
+            //studentsList = generateRandomCardsData()
         }
         recyclerView?.addOnItemTouchListener(
             StudentsRecyclerClickListener(
@@ -99,25 +101,26 @@ class StudentsFragment : Fragment() {
             .navigate(R.id.action_studentsFragment_to_studentInfoFragment, args)
     }
 
-    private fun generateRandomCardsData(): ArrayList<Student> {
-        val students: ArrayList<Student> = ArrayList()
-        for (i in 0..10) {
-            students.add(
-                Student(
-                    "SampleKey $i",
-                    "Name $i",
-                    "Surname $i",
-                    i.toLong(),
-                    "Parent name $i",
-                    i.toLong(),
-                    Random.nextBoolean(),
-                    Random.nextInt(100),
-                    10,
-                    Student.ScoreStatus.values()[Random.nextInt(3)]
-                )
-            )
-        }
-        return students
-    }
+//    private fun generateRandomCardsData(): ArrayList<Student> {
+//        val students: ArrayList<Student> = ArrayList()
+//        for (i in 0..10) {
+//            students.add(
+//                Student(
+//                    "SampleKey $i",
+//                    "Name $i",
+//                    "Surname $i",
+//                    i.toLong(),
+//                    "Parent name $i",
+//                    i.toString(),
+//                    i.toLong(),
+//                    Random.nextBoolean(),
+//                    Random.nextInt(100),
+//                    10,
+//                    Student.ScoreStatus.values()[Random.nextInt(3)]
+//                )
+//            )
+//        }
+//        return students
+//    }
 }
 
