@@ -24,8 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="8dp">
-            </LinearLayout>
+                android:padding="8dp"/>
         </ScrollView>
     </androidx.cardview.widget.CardView>
 
@@ -45,19 +44,21 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <Button
-                android:id="@+id/send_homework_button_add_image"
+            <EditText
+                android:id="@+id/check_homework_edit_score"
+                style="@style/edit_text_style_default"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:text="Добавить фотографию" />
+                android:gravity="center"
+                android:hint="Поставьте оценку"
+                android:inputType="number"
+                android:theme="@style/edit_text_theme_default"
+                android:importantForAutofill="no" />
 
             <Button
                 android:id="@+id/check_homework_button_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:text="Отправить" />
+                android:text="Подтвердить" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.entities.Student
 import com.example.tutorsnotebook.utils.GsonHandler
@@ -55,6 +57,13 @@ class StudentInfoFragment : Fragment() {
                 setPaymentStatusImage(paymentStatusImageView, student.isPayed)
                 setScoreStatusImage(scoreStatusImageView, student.scoreStatus)
             }
+        }
+
+        val homeworksButton = rootView
+            .findViewById<Button>(R.id.student_info_button_homeworks)
+        homeworksButton.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(R.id.action_studentInfoFragment_to_checkHomeworkFragment)
         }
     }
 
