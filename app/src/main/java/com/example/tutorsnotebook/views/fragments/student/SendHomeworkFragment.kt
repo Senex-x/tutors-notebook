@@ -84,7 +84,7 @@ class SendHomeworkFragment : Fragment() {
         val images = ArrayList<String>()
         for (imageUri in newImagesUriList) {
             val bitmap = ImageHandler.getBitmapByUri(imageUri, context)
-            val compressedBitmap = ImageHandler.compressBitmap(bitmap, 0)
+            val compressedBitmap = ImageHandler.compressBitmap(bitmap, 20)
             val imageString = ImageHandler.imageToString(compressedBitmap)
             images.add(imageString)
         }
@@ -100,10 +100,12 @@ class SendHomeworkFragment : Fragment() {
 
     private fun addNewImageView(parent: LinearLayout): ImageView {
         val newImageView = ImageView(requireContext())
-        newImageView.layoutParams = LinearLayout.LayoutParams(
+        val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
+        params.topMargin = 16
+        newImageView.layoutParams = params
         parent.addView(newImageView)
         return newImageView
     }

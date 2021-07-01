@@ -15,11 +15,8 @@ import com.example.tutorsnotebook.database.Database
 import com.example.tutorsnotebook.database.OnDataGetListener
 import com.example.tutorsnotebook.entities.Homework
 import com.example.tutorsnotebook.utils.ImageHandler
-import com.example.tutorsnotebook.utils.Logger
 import com.example.tutorsnotebook.utils.Toaster
 import com.google.firebase.database.DataSnapshot
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class CheckHomeworkFragment : Fragment() {
     private var studentKey: String = ""
@@ -47,13 +44,14 @@ class CheckHomeworkFragment : Fragment() {
         submitButton.setOnClickListener {
             val score = scoreEditText.text.toString()
             if (score.isNotEmpty()) {
-                saveScoreToDatabase(score.toInt())
+                val scoreInt = score.toInt()
+                if(scoreInt in 0..100) {
+                    saveScoreToDatabase(scoreInt)
 
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_checkHomeworkFragment_to_studentsFragment)
-            } else {
-                Toaster.toast("Оценка не выставлена", requireContext())
-            }
+                    Navigation.findNavController(it)
+                        .navigate(R.id.action_checkHomeworkFragment_to_studentsFragment)
+                } else Toaster.toast("Оценка некорректна", requireContext())
+            } else Toaster.toast("Оценка не выставлена", requireContext())
         }
 
         // Gonna take time
@@ -61,7 +59,7 @@ class CheckHomeworkFragment : Fragment() {
     }
 
     private fun handleHomeworkDisplay(parent: LinearLayout) {
-        Database.getHomeworkFromDatabase(studentKey, object : OnDataGetListener {
+        Database.getHomework(studentKey, object : OnDataGetListener {
             override fun onSuccess(data: DataSnapshot?) {
                 val homework = data!!.getValue(Homework::class.java)!!
                 val images = homework.images
@@ -80,10 +78,13 @@ class CheckHomeworkFragment : Fragment() {
 
     private fun addNewImageView(parent: LinearLayout): ImageView {
         val newImageView = ImageView(requireContext())
-        newImageView.layoutParams = LinearLayout.LayoutParams(
+        val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
+        params.topMargin = 16
+        newImageView.layoutParams = params
+
         parent.addView(newImageView)
         return newImageView
     }

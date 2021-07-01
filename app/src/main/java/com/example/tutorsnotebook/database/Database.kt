@@ -64,12 +64,20 @@ object Database {
     }
 
     fun putHomeworkScore(studentKey: String, score: Int) {
-        TODO("Not yet implemented")
+        database.child("homeworks").child(studentKey).child("score").setValue(score)
     }
 
-    fun getHomeworkFromDatabase(studentKey: String, listener: OnDataGetListener) {
+    fun getHomework(studentKey: String, listener: OnDataGetListener) {
         database.child("homeworks").child(studentKey).get().addOnSuccessListener {
             if (it.exists()) {
+                listener.onSuccess(it)
+            }
+        }
+    }
+
+    fun getHomeworkScore(studentKey: String, listener: OnDataGetListener) {
+        database.child("homeworks").child(studentKey).child("score").get().addOnSuccessListener {
+            if(it.exists()) {
                 listener.onSuccess(it)
             }
         }
