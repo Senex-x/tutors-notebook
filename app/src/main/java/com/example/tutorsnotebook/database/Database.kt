@@ -1,10 +1,12 @@
 package com.example.tutorsnotebook.database
 
 import android.util.Log
+import com.example.tutorsnotebook.entities.Homework
 import com.example.tutorsnotebook.entities.Student
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.ktx.database
+import java.util.ArrayList
 
 object Database {
     var database: DatabaseReference = Firebase.database.reference
@@ -56,4 +58,18 @@ object Database {
             }
         }
     }
+
+    fun putHomework(studentKey: String, images: ArrayList<String>) {
+        TODO("Not yet implemented")
+    }
+
+    fun putHomeworkScore(studentKey: String, score: Int) {
+        TODO("Not yet implemented")
+    }
+
+    fun getHomeworkFromDatabase(studentKey: String): Homework {
+        TODO("Not yet implemented")
+    }
+
+
 }
