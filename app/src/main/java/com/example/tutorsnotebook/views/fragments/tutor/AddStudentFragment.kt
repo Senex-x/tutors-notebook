@@ -67,8 +67,11 @@ class AddStudentFragment : Fragment() {
             }
 
             if (someFiledsAreEmpty) {
-                Toast.makeText(context, "Заполните все поля", Toast.LENGTH_SHORT).show()
-            } else {
+                Toast.makeText(context, "Заполните все поля", Toast.LENGTH_SHORT).show() }
+            else if (rootView.findViewById<Button>(R.id.generate_login_button).isClickable) {
+                Toast.makeText(context, "Сгенерируйте пароль", Toast.LENGTH_SHORT).show()
+            }
+            else {
                 var student = Student(
                     key = rootView.findViewById<Button>(R.id.generate_login_button).text.toString(),
                     name = rootView.findViewById<EditText>(R.id.student_name_field).text.toString(),
