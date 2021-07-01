@@ -5,6 +5,8 @@ import com.example.tutorsnotebook.entities.Student
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.ktx.database
+import io.github.serpro69.kfaker.*
+import kotlin.random.Random
 
 object Database {
     var database: DatabaseReference = Firebase.database.reference
@@ -47,6 +49,36 @@ object Database {
                 }
                 callback.invoke(keys)
             }
+        }
+    }
+
+    fun deleteAllStudents() {
+        getAllStudentKeys {
+            for (key in it) {
+                database.child("students").child(key).removeValue()
+            }
+        }
+    }
+
+    fun addRandomUsers() {
+        val faker = Faker()
+        for (i in 0..10) {
+            writeNewStudent(
+                Student(
+                    key = Student.generateKey(setOf()),
+                    name = faker.name.firstName(),
+                    surname = faker.name.lastName(),
+                    studentPhone = faker.phoneNumber.cellPhone().replace("[^0-9]".toRegex(), "")
+                        .toLong(),
+                    parentName = faker.name.firstName(),
+                    parentMiddleName = faker.name.lastName(),
+                    parentPhone = faker.phoneNumber.cellPhone().replace("[^0-9]".toRegex(), "")
+                        .toLong(),
+                    avgScore = (0..100).random(),
+                    isPayed = Random.nextBoolean(),
+                    scoreStatus = Student.ScoreStatus.values().random()
+                )
+            )
         }
     }
 }
