@@ -5,7 +5,7 @@ class Student(
     var key: String = "key",
     var name: String = "name",
     var surname: String = "surname",
-    var studentPhone: Int = 0,
+    var studentPhone: Long = 0,
     var parentName: String = "parent name",
     var parentPhone: Int = 0,
     var isPayed: Boolean = false,

@@ -69,6 +69,7 @@ class StudentsFragment : Fragment() {
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
         Database.getAllStudents {
             recyclerView?.adapter = StudentsRecyclerAdapter(it, requireContext())
+            studentsList = ArrayList(it)
         }
         recyclerView?.addOnItemTouchListener(
             StudentsRecyclerClickListener(
@@ -106,7 +107,7 @@ class StudentsFragment : Fragment() {
                     "SampleKey $i",
                     "Name $i",
                     "Surname $i",
-                    i,
+                    i.toLong(),
                     "Parent name $i",
                     i,
                     Random.nextBoolean(),
