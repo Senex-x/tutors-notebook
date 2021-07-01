@@ -39,7 +39,7 @@ class TestsFragment : Fragment() {
         val collectionReference = firestore.collection("quizzes")
         collectionReference.addSnapshotListener{ value, error ->
             if (value == null || error != null) {
-                Toast.makeText(getActivity(), "Error fetching data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Error fetching data", Toast.LENGTH_SHORT).show()
                 return@addSnapshotListener
             }
             Log.d("DATA", value.toObjects(Quiz::class.java).toString())
