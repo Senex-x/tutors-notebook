@@ -7,10 +7,8 @@
     android:background="@color/primary_background">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="10dp"
+        style="@style/card_view_style_default"
         app:layout_constraintBottom_toTopOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +38,6 @@
 
             <TextView
                 android:id="@+id/status_text"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Статус:"
@@ -54,7 +51,6 @@
                 android:text="Загрузка..."
                 android:textSize="@dimen/text_size_big"
                 android:textStyle="bold" />
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -76,10 +72,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="8dp"
+        style="@style/card_view_style_default"
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -89,7 +83,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-
             android:text="Отправить на проверку" />
 
     </androidx.cardview.widget.CardView>
