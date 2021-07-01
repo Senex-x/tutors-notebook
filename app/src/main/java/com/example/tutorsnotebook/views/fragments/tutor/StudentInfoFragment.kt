@@ -1,6 +1,5 @@
 package com.example.tutorsnotebook.views.fragments.tutor
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.entities.Student
 import com.example.tutorsnotebook.utils.GsonHandler
-import com.example.tutorsnotebook.utils.ImageHandler
+import com.example.tutorsnotebook.utils.IconHandler
 
 class StudentInfoFragment : Fragment() {
     override fun onCreateView(
@@ -78,7 +77,7 @@ class StudentInfoFragment : Fragment() {
             }
         }
 
-        ImageHandler.setColoredImage(
+        IconHandler.setColoredImage(
             requireContext(),
             imageView,
             drawableId,
@@ -87,7 +86,7 @@ class StudentInfoFragment : Fragment() {
     }
 
     private fun setPaymentStatusImage(imageView: ImageView, status: Boolean) {
-        ImageHandler.setColoredImage(
+        IconHandler.setColoredImage(
             requireContext(),
             imageView,
             if (status) R.drawable.ic_check_circle_24 else R.drawable.ic_minus_circle_24,

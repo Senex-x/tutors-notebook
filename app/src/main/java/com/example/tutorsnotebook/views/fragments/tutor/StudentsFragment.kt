@@ -12,13 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.entities.Student
 import com.example.tutorsnotebook.utils.GsonHandler
-import com.example.tutorsnotebook.utils.ImageHandler
+import com.example.tutorsnotebook.utils.IconHandler
 import com.example.tutorsnotebook.utils.StudentsRecyclerClickListener
 import com.example.tutorsnotebook.views.adapters.StudentsRecyclerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.roomorama.caldroid.CaldroidFragment
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.random.Random
 
@@ -45,7 +42,7 @@ class StudentsFragment : Fragment() {
                 .navigate(R.id.action_studentsFragment_to_addStudentFragment)
         }
         fab.setImageDrawable(
-            ImageHandler.getColoredDrawable(
+            IconHandler.getColoredDrawable(
                 requireContext(),
                 R.drawable.ic_add_24,
                 R.color.primary
