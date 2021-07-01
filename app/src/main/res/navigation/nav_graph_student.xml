@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeworkFragment_to_knowledgeFragment"
             app:destination="@id/knowledgeFragment" />
+        <action
+            android:id="@+id/action_homeworkFragment_to_sendHomeworkFragment"
+            app:destination="@id/sendHomeworkFragment" />
     </fragment>
     <fragment
         android:id="@+id/testsFragment"
@@ -40,5 +43,20 @@
         <action
             android:id="@+id/action_testsFragment_to_knowledgeFragment"
             app:destination="@id/knowledgeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendHomeworkFragment"
+        android:name="com.example.tutorsnotebook.views.fragments.student.SendHomeworkFragment"
+        android:label="SendHomeworkFragment"
+        tools:layout="@layout/fragment_send_homework">
+        <action
+            android:id="@+id/action_sendHomeworkFragment_to_homeworkFragment"
+            app:destination="@id/homeworkFragment" />
+        <action
+            android:id="@+id/action_sendHomeworkFragment_to_knowledgeFragment"
+            app:destination="@id/knowledgeFragment" />
+        <action
+            android:id="@+id/action_sendHomeworkFragment_to_testsFragment"
+            app:destination="@id/testsFragment" />
     </fragment>
 </navigation>

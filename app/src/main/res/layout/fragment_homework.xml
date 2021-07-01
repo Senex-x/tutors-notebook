@@ -21,7 +21,7 @@
 
 
     <Button
-        android:id="@+id/send_homework"
+        android:id="@+id/homework_button_send"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:text="Добавить"
@@ -41,7 +41,7 @@
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/send_homework" />
+        app:layout_constraintTop_toBottomOf="@+id/homework_button_send" />
 
     <TextView
         android:id="@+id/status_number"
