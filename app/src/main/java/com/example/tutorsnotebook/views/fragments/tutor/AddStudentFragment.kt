@@ -77,9 +77,9 @@ class AddStudentFragment : Fragment() {
                     name = rootView.findViewById<EditText>(R.id.student_name_field).text.toString(),
                     surname = rootView.findViewById<EditText>(R.id.student_surname_field).text.toString(),
                     studentPhone = rootView.findViewById<EditText>(R.id.student_number_field).text.toString()
-                        .toInt(), //TODO: add:regex
+                        .toLong(), //TODO: add:regex
                     parentPhone = rootView.findViewById<EditText>(R.id.parent_number_field).text.toString()
-                        .toInt()
+                        .toLong()
                 )
 
                 Database.writeNewStudent(student)

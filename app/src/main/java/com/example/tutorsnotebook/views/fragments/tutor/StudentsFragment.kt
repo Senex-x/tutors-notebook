@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tutorsnotebook.R
+import com.example.tutorsnotebook.database.Database
 import com.example.tutorsnotebook.entities.Student
 import com.example.tutorsnotebook.utils.GsonHandler
 import com.example.tutorsnotebook.utils.ImageHandler
@@ -66,7 +67,10 @@ class StudentsFragment : Fragment() {
     private fun initRecyclerView(rootView: View) {
         recyclerView = rootView.findViewById(R.id.students_recycler_view)
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView?.adapter = StudentsRecyclerAdapter(getCardsData(), requireContext())
+        Database.getAllStudents {
+            recyclerView?.adapter = StudentsRecyclerAdapter(it, requireContext())
+            studentsList = ArrayList(it)
+        }
         recyclerView?.addOnItemTouchListener(
             StudentsRecyclerClickListener(
                 context,
@@ -103,9 +107,9 @@ class StudentsFragment : Fragment() {
                     "SampleKey $i",
                     "Name $i",
                     "Surname $i",
-                    i,
+                    i.toLong(),
                     "Parent name $i",
-                    i,
+                    i.toLong(),
                     Random.nextBoolean(),
                     Random.nextInt(100),
                     10,
