@@ -17,6 +17,7 @@ class NotesFragment : Fragment() {
 
         // Put initializers here
 
+
         return rootView;
     }
 }

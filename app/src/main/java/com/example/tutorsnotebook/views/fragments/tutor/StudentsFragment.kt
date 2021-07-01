@@ -11,11 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.entities.Student
+import com.example.tutorsnotebook.utils.GsonHandler
 import com.example.tutorsnotebook.utils.ImageHandler
 import com.example.tutorsnotebook.utils.StudentsRecyclerClickListener
 import com.example.tutorsnotebook.views.adapters.StudentsRecyclerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.roomorama.caldroid.CaldroidFragment
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 class StudentsFragment : Fragment() {
@@ -81,8 +85,14 @@ class StudentsFragment : Fragment() {
     }
 
     private fun openStudent(student: Student, view: View) {
+        val args = Bundle()
+        args.putString(
+            "data",
+            GsonHandler.serializeObject(student)
+        )
+
         Navigation.findNavController(view)
-            .navigate(R.id.action_studentsFragment_to_studentInfoFragment)
+            .navigate(R.id.action_studentsFragment_to_studentInfoFragment, args)
     }
 
     private fun generateRandomCardsData(): ArrayList<Student> {
@@ -94,6 +104,7 @@ class StudentsFragment : Fragment() {
                     "Name $i",
                     "Surname $i",
                     i,
+                    "Parent name $i",
                     i,
                     Random.nextBoolean(),
                     Random.nextInt(100),

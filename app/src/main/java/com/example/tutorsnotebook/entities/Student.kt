@@ -5,6 +5,7 @@ class Student(
     var name: String = "name",
     var surname: String = "surname",
     var studentPhone: Int = 0,
+    var parentName: String = "parent name",
     var parentPhone: Int = 0,
     var isPayed: Boolean = false,
     var avgScore: Int = 0,
@@ -19,7 +20,16 @@ class Student(
     }
 
     override fun toString(): String {
-        return "Student(key='$key', name='$name', surname='$surname', studentPhone=$studentPhone, parentPhone=$parentPhone, isPayed=$isPayed, avgScore=$avgScore, scoreCounter=$scoreCounter, scoreStatus=$scoreStatus)"
+        return "Student(key='$key', " +
+                "name='$name', " +
+                "surname='$surname', " +
+                "studentPhone=$studentPhone, " +
+                "parentName='$parentName', " +
+                "parentPhone=$parentPhone, " +
+                "isPayed=$isPayed, " +
+                "avgScore=$avgScore, " +
+                "scoreCounter=$scoreCounter, " +
+                "scoreStatus=$scoreStatus)"
     }
 
     companion object {
