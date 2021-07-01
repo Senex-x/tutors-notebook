@@ -15,14 +15,7 @@ object Database {
     }
 
     fun writeNewStudent(student: Student) {
-        getAllStudentKeys {
-            if (student.key in it) {
-                student.key = (1000..9999).random().toString()
-                writeNewStudent(student)
-            } else {
-                database.child("students").child(student.key).setValue(student)
-            }
-        }
+        database.child("students").child(student.key).setValue(student)
     }
 
     fun getStudent(key: String, callback: (Student) -> Unit) {

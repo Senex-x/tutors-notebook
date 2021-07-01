@@ -22,6 +22,16 @@ class Student(
         return "Student(key='$key', name='$name', surname='$surname', studentPhone=$studentPhone, parentPhone=$parentPhone, isPayed=$isPayed, avgScore=$avgScore, scoreCounter=$scoreCounter, scoreStatus=$scoreStatus)"
     }
 
+    companion object {
+        fun generateKey(keys: Set<String>): String {
+            var key = (1000..9999).random().toString()
+            while (key in keys) {
+                key = (1000..9999).random().toString()
+            }
+            return key
+        }
+    }
+
     enum class ScoreStatus {
         INCREASES,
         STAYS,
