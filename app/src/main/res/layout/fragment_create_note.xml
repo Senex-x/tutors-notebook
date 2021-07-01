@@ -11,10 +11,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
+        android:clickable="true"
         android:src="@drawable/ic_note_go_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black_for_buttons" />
+        app:tint="@color/black" />
 
     <ImageView
         android:id="@+id/button_done"
@@ -23,10 +24,11 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
+        android:clickable="true"
         android:src="@drawable/ic_note_accept"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black_for_buttons" />
+        app:tint="@color/black" />
 
 
     <EditText
@@ -34,15 +36,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@null"
+        android:background="@color/white"
         android:ellipsize="end"
         android:hint="@string/note_title"
         android:inputType="text"
         android:maxLines="1"
         android:padding="10dp"
         android:textColor="@color/black"
-        android:textColorHint="@color/dark_gray"
-        android:textSize="14sp"
+        android:textColorHint="@color/black_for_buttons"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_back" />
@@ -52,13 +54,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@null"
+        android:background="@color/white"
         android:hint="@string/note_content"
         android:inputType="textMultiLine"
         android:padding="10dp"
         android:textColor="@color/black"
-        android:textColorHint="@color/dark_gray"
-        android:textSize="12sp"
+        android:textColorHint="@color/black_for_buttons"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/note_title" />

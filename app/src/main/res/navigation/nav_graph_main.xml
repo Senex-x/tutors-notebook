@@ -33,7 +33,6 @@
             android:id="@+id/action_calendarFragment_to_notesFragment"
             app:destination="@id/notesFragment" />
     </fragment>
-
     <fragment
         android:id="@+id/notesFragment"
         android:name="com.example.tutorsnotebook.views.fragments.tutor.NotesFragment"
@@ -45,6 +44,18 @@
         <action
             android:id="@+id/action_notesFragment_to_calendarFragment"
             app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_notesFragment_to_createNoteFragment"
+            app:destination="@id/createNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNoteFragment"
+        android:name="com.example.tutorsnotebook.views.fragments.tutor.CreateNoteFragment"
+        android:label="CreateNoteFragment"
+        tools:layout="@layout/fragment_create_note">
+        <action
+            android:id="@+id/action_createNoteFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
     </fragment>
     <fragment
         android:id="@+id/addStudentFragment"
