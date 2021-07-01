@@ -6,15 +6,51 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
+import android.provider.MediaStore
+import android.util.Base64
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
 
 class ImageHandler {
     companion object {
-        private const val MAX_HEIGHT = 1024
-        private const val MAX_WIDTH = 1024
+        fun getBitmapByUri(imageUri: Uri, context: Context): Bitmap {
+            return MediaStore.Images.Media.getBitmap(context.contentResolver, imageUri)
+        }
+
+        fun compressBitmap(bitmap: Bitmap, quality: Int): Bitmap {
+            val out = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, quality, out)
+            return BitmapFactory.decodeStream(ByteArrayInputStream(out.toByteArray()))
+        }
+
+        fun imageToString(imageUri: Uri, context: Context): String {
+            return imageToString(
+                getBitmapByUri(imageUri, context)
+            )
+        }
+
+        fun imageToString(bitmap: Bitmap): String {
+            val out = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
+            val b = out.toByteArray()
+            return Base64.encodeToString(b, Base64.DEFAULT)
+        }
+
+        fun stringToBitmap(encodedString: String): Bitmap? {
+            return try {
+                val encodeByte = Base64.decode(encodedString, Base64.DEFAULT)
+                BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.size)
+            } catch (e: Exception) {
+                e.message
+                null
+            }
+        }
 
         fun handleSamplingAndRotationBitmap(context: Context, selectedImage: Uri?): Bitmap? {
+            val MAX_HEIGHT = 1024
+            val MAX_WIDTH = 1024
             // First decode with inJustDecodeBounds=true to check dimensions
             val options = BitmapFactory.Options()
             options.inJustDecodeBounds = true
@@ -68,7 +104,11 @@ class ImageHandler {
             return inSampleSize
         }
 
-        private fun rotateImageIfRequired(context: Context, img: Bitmap, selectedImage: Uri): Bitmap? {
+        private fun rotateImageIfRequired(
+            context: Context,
+            img: Bitmap,
+            selectedImage: Uri
+        ): Bitmap? {
             val imageStream: InputStream? =
                 context.contentResolver.openInputStream(selectedImage)
             val ei = ExifInterface(imageStream!!)
