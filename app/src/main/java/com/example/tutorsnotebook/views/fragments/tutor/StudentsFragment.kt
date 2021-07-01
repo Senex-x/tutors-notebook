@@ -109,7 +109,7 @@ class StudentsFragment : Fragment() {
                     "Surname $i",
                     i.toLong(),
                     "Parent name $i",
-                    i,
+                    i.toLong(),
                     Random.nextBoolean(),
                     Random.nextInt(100),
                     10,

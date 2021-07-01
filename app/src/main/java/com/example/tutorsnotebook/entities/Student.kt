@@ -7,7 +7,7 @@ class Student(
     var surname: String = "surname",
     var studentPhone: Long = 0,
     var parentName: String = "parent name",
-    var parentPhone: Int = 0,
+    var parentPhone: Long = 0,
     var isPayed: Boolean = false,
     var avgScore: Int = 0,
     // to update average score correctly
