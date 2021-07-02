@@ -10,10 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.database.Database
-import com.example.tutorsnotebook.database.OnDataGetListener
-import com.example.tutorsnotebook.database.OnObjectGetListener
+import com.example.tutorsnotebook.database.OnItemGetListener
 import com.example.tutorsnotebook.utils.PreferencesHandler
-import com.google.firebase.database.DataSnapshot
 
 class HomeworkFragment : Fragment() {
     var studentKey: String = ""
@@ -44,23 +42,20 @@ class HomeworkFragment : Fragment() {
         val avgScoreTextView = rootView.findViewById<TextView>(R.id.homework_text_avg_score)
 
         val studentKey = PreferencesHandler(requireActivity()).getStudentKey()
-        Database.getHomeworkScore(studentKey, object : OnDataGetListener {
-            override fun onSuccess(data: DataSnapshot?) {
-                if (data != null) {
-                    val score = data.getValue(Int::class.java)!!
-                    if (score == -1) { // Not checked yet
-                        statusTextView.text = "Ожидает проверки"
-                        lastScoreTextView.text = "Ожидание проверки"
-                        sendButton.text = "Отправить заново"
-                    } else {
-                        statusTextView.text = "Ожидает отправки"
-                        lastScoreTextView.text = score.toString()
-                    }
+        Database.getHomeworkScore(studentKey, object : OnItemGetListener<Int> {
+            override fun onSuccess(item: Int) {
+                if (item == -1) { // Not checked yet
+                    statusTextView.text = "Ожидает проверки"
+                    lastScoreTextView.text = "Ожидание проверки"
+                    sendButton.text = "Отправить заново"
+                } else {
+                    statusTextView.text = "Ожидает отправки"
+                    lastScoreTextView.text = item.toString()
                 }
             }
         })
 
-        Database.getStudentAverageScore(studentKey, object : OnObjectGetListener<Int> {
+        Database.getStudentAverageScore(studentKey, object : OnItemGetListener<Int> {
             override fun onSuccess(item: Int) {
                 avgScoreTextView.text = item.toString()
             }

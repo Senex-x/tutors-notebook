@@ -69,10 +69,10 @@ object Database {
         database.child("homeworks").child(studentKey).child("score").setValue(score)
     }
 
-    fun getHomework(studentKey: String, listener: OnDataGetListener) {
+    fun getHomework(studentKey: String, listener: OnItemGetListener<Homework>) {
         database.child("homeworks").child(studentKey).get().addOnSuccessListener {
             if (it.exists()) {
-                listener.onSuccess(it)
+                listener.onSuccess(it.getValue(Homework::class.java)!!)
             }
         }
     }
@@ -85,16 +85,16 @@ object Database {
         }
     }
 
-    fun getHomeworkScore(studentKey: String, listener: OnDataGetListener) {
+    fun getHomeworkScore(studentKey: String, listener: OnItemGetListener<Int>) {
         database.child("homeworks").child(studentKey).child("score").get()
             .addOnSuccessListener {
                 if (it.exists()) {
-                    listener.onSuccess(it)
+                    listener.onSuccess(it.getValue(Int::class.java)!!)
                 }
             }
     }
 
-    fun getStudentAverageScore(studentKey: String, listener: OnObjectGetListener<Int>) {
+    fun getStudentAverageScore(studentKey: String, listener: OnItemGetListener<Int>) {
         database.child("students").child(studentKey).child("avgScore").get()
             .addOnSuccessListener {
                 if (it.exists()) {

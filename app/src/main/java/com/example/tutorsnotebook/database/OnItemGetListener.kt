@@ -1,5 +1,5 @@
 package com.example.tutorsnotebook.database
 
-interface OnObjectGetListener<T> {
+interface OnItemGetListener<T> {
     fun onSuccess(item: T)
 }

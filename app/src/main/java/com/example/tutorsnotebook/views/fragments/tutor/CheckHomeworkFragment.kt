@@ -9,12 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.database.Database
-import com.example.tutorsnotebook.database.OnDataGetListener
+import com.example.tutorsnotebook.database.OnItemGetListener
 import com.example.tutorsnotebook.entities.Homework
 import com.example.tutorsnotebook.utils.ImageHandler
 import com.example.tutorsnotebook.utils.Logger
 import com.example.tutorsnotebook.utils.Toaster
-import com.google.firebase.database.DataSnapshot
 
 class CheckHomeworkFragment : Fragment() {
     private var studentKey: String = ""
@@ -67,19 +66,18 @@ class CheckHomeworkFragment : Fragment() {
     }
 
     private fun handleHomeworkDisplay(parent: LinearLayout) {
-        Database.getHomework(studentKey, object : OnDataGetListener {
-            override fun onSuccess(data: DataSnapshot?) {
-                val homework = data!!.getValue(Homework::class.java)!!
-                val images = homework.images
+        Database.getHomework(studentKey, object : OnItemGetListener<Homework> {
+            override fun onSuccess(item: Homework) {
+                val images = item.images
                 for (image in images) {
                     addNewImageView(parent).setImageBitmap(
                         ImageHandler.stringToBitmap(image)
                     )
                 }
 
-                if (homework.score != -1) {
+                if (item.score != -1) {
                     Toaster.toast("Работа уже проверена", requireContext())
-                    scoreEditText?.setText(homework.score.toString())
+                    scoreEditText?.setText(item.score.toString())
                     scoreEditText?.setTextColor(requireContext().resources.getColor(R.color.dark_gray))
                     scoreEditText?.isEnabled = false
 
@@ -89,10 +87,11 @@ class CheckHomeworkFragment : Fragment() {
                     }
                     submitButton?.text = "ожидание"
                 }
-                if(homework.message.isNotEmpty()) {
+
+                if (item.message.isNotEmpty()) {
                     messageTitleTextView?.visibility = View.VISIBLE
                     messageTextView?.visibility = View.VISIBLE
-                    messageTextView?.text = homework.message
+                    messageTextView?.text = item.message
                 }
             }
         })
