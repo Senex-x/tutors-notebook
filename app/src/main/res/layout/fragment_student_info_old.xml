@@ -66,7 +66,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/student_info_edit_text_parent_name"
+        android:id="@+id/student_info_text_parent_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -87,7 +87,7 @@
         android:layout_marginTop="5dp"
         android:text="Телефон родителя"
         android:gravity="center|center_horizontal|center_vertical"
-        app:layout_constraintTop_toBottomOf="@+id/student_info_edit_text_parent_name" />
+        app:layout_constraintTop_toBottomOf="@+id/student_info_text_parent_name" />
 
     <TextView
         android:id="@+id/student_info_text_view_phone"

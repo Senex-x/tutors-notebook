@@ -2,6 +2,7 @@ package com.example.tutorsnotebook.database
 
 import com.example.tutorsnotebook.entities.Homework
 import com.example.tutorsnotebook.entities.Student
+import com.example.tutorsnotebook.utils.Logger
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -56,6 +57,10 @@ object Database {
                 callback.invoke(keys)
             }
         }
+    }
+
+    fun putStudent(student: Student) {
+        database.child("students").child(student.key).setValue(student)
     }
 
     // Deliberately overriding homeworks

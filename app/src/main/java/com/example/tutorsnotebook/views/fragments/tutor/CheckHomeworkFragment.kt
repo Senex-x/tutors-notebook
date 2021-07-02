@@ -20,6 +20,8 @@ import com.google.firebase.database.DataSnapshot
 
 class CheckHomeworkFragment : Fragment() {
     private var studentKey: String = ""
+    private var scoreEditText: EditText? = null
+    private var submitButton: Button? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,11 +40,11 @@ class CheckHomeworkFragment : Fragment() {
     private fun initUi(rootView: View) {
         val imagesPreviewLayout =
             rootView.findViewById<LinearLayout>(R.id.check_homework_layout_images)
-        val scoreEditText = rootView.findViewById<EditText>(R.id.check_homework_edit_score)
+        scoreEditText = rootView.findViewById<EditText>(R.id.check_homework_edit_score)
 
-        val submitButton = rootView.findViewById<Button>(R.id.check_homework_button_submit)
-        submitButton.setOnClickListener {
-            val score = scoreEditText.text.toString()
+        submitButton = rootView.findViewById<Button>(R.id.check_homework_button_submit)
+        submitButton?.setOnClickListener {
+            val score = scoreEditText?.text.toString()
             if (score.isNotEmpty()) {
                 val scoreInt = score.toInt()
                 if(scoreInt in 0..100) {
@@ -67,6 +69,11 @@ class CheckHomeworkFragment : Fragment() {
                     addNewImageView(parent).setImageBitmap(
                         ImageHandler.stringToBitmap(image)
                     )
+                }
+                if(homework.score != -1) {
+                    Toaster.toast("Работа уже проверена", requireContext())
+                    scoreEditText?.setText(homework.score.toString())
+                    submitButton?.text = "изменить оценку"
                 }
             }
         })

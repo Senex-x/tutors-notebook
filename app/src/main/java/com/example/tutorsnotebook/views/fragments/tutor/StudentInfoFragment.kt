@@ -1,5 +1,8 @@
 package com.example.tutorsnotebook.views.fragments.tutor
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +16,7 @@ import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.entities.Student
 import com.example.tutorsnotebook.utils.GsonHandler
 import com.example.tutorsnotebook.utils.IconHandler
+import com.example.tutorsnotebook.utils.Toaster
 
 class StudentInfoFragment : Fragment() {
     private var studentKey: String = ""
@@ -38,8 +42,10 @@ class StudentInfoFragment : Fragment() {
             .findViewById<TextView>(R.id.student_info_edit_text_name)
         val scoreTextView = rootView
             .findViewById<TextView>(R.id.student_info_text_view_score)
+        val studentPhoneTextView = rootView
+            .findViewById<TextView>(R.id.student_info_text_view_phone)
         val parentNameTextView = rootView
-            .findViewById<TextView>(R.id.student_info_edit_text_parent_name)
+            .findViewById<TextView>(R.id.student_info_text_parent_name)
         val parentPhoneTextView = rootView
             .findViewById<TextView>(R.id.student_info_edit_text_parent_phone)
         val loginTextView = rootView
@@ -53,6 +59,7 @@ class StudentInfoFragment : Fragment() {
                 studentKey = student.key
                 nameTextView.text = student.name + " " + student.surname
                 scoreTextView.text = student.avgScore.toString()
+                studentPhoneTextView.text = student.studentPhone.toString()
                 parentNameTextView.text = student.parentName
                 parentPhoneTextView.text = student.parentPhone.toString()
                 loginTextView.text = student.key
@@ -70,10 +77,25 @@ class StudentInfoFragment : Fragment() {
                 "student-key",
                 studentKey
             )
-
             Navigation.findNavController(it)
                 .navigate(R.id.action_studentInfoFragment_to_checkHomeworkFragment, bundle)
         }
+        val context = requireContext()
+        studentPhoneTextView.setOnClickListener {
+            Toaster.toast("Скопировано", context)
+            context.copyToClipboard(studentPhoneTextView.text)
+        }
+
+        parentPhoneTextView.setOnClickListener {
+            Toaster.toast("Скопировано", context)
+            context.copyToClipboard(parentPhoneTextView.text)
+        }
+    }
+
+    private fun Context.copyToClipboard(text: CharSequence) {
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("label", text)
+        clipboard.setPrimaryClip(clip)
     }
 
     private fun setScoreStatusImage(imageView: ImageView, status: Student.ScoreStatus) {

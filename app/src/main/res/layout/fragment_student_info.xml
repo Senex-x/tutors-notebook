@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,7 +91,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -146,7 +146,7 @@
                     android:textSize="@dimen/text_size_big" />
 
                 <TextView
-                    android:id="@+id/student_info_edit_text_parent_name"
+                    android:id="@+id/student_info_text_parent_name"
                     style="@style/fragment_student_info_element_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
 
                 <TextView
                     android:id="@+id/student_info_edit_text_parent_phone"
-                    style="@style/fragment_student_info_element_style"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="89121233322"
@@ -172,6 +172,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            app:cardCornerRadius="10dp"
             style="@style/card_view_style_default"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -182,7 +183,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
                 android:orientation="vertical">
 
                 <Button

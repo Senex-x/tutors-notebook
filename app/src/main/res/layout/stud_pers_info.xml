@@ -67,7 +67,7 @@
 
 
     <TextView
-        android:id="@+id/student_info_edit_text_parent_name"
+        android:id="@+id/student_info_text_parent_name"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_marginTop="5dp"
@@ -95,7 +95,7 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/student_info_edit_text_parent_name" />
+        app:layout_constraintTop_toBottomOf="@+id/student_info_text_parent_name" />
 
     <Button
         android:id="@+id/student_info_button_add_test"
