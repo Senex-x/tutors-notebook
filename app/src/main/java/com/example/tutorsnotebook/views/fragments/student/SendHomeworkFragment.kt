@@ -24,6 +24,7 @@ import java.io.FileNotFoundException
 class SendHomeworkFragment : Fragment() {
     private val newImagesUriList = ArrayList<Uri>()
     private var imageContainerLayout: LinearLayout? = null
+    private var messageEditText: EditText? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +39,7 @@ class SendHomeworkFragment : Fragment() {
     }
 
     private fun initUi(rootView: View) {
+        messageEditText = rootView.findViewById(R.id.send_homework_edit_message)
         imageContainerLayout = rootView.findViewById(R.id.check_homework_layout_images)
 
         val addImageButton = rootView.findViewById<Button>(R.id.send_homework_button_add_image)
@@ -93,7 +95,7 @@ class SendHomeworkFragment : Fragment() {
 
     private fun saveHomeworkToDatabase(images: ArrayList<String>) {
         val studentKey = PreferencesHandler(requireActivity()).getStudentKey()
-        val homework = Homework(studentKey, -1, images, "message")
+        val homework = Homework(studentKey, -1, images, messageEditText?.text.toString())
         Logger.d("Sending homework to database")
         Database.putHomework(homework)
     }

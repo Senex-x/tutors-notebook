@@ -1,16 +1,13 @@
 package com.example.tutorsnotebook.views.fragments.student
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import com.example.tutorsnotebook.R
-import com.example.tutorsnotebook.utils.ImageHandler
+import com.example.tutorsnotebook.utils.IconHandler
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.database.core.Context
 
 class KnowledgeFragment : Fragment() {
     override fun onCreateView(
@@ -33,7 +30,7 @@ class KnowledgeFragment : Fragment() {
 
         }
         fab.setImageDrawable(
-            ImageHandler.getColoredDrawable(
+            IconHandler.getColoredDrawable(
                 requireContext(),
                 R.drawable.ic_add_24,
                 R.color.primary

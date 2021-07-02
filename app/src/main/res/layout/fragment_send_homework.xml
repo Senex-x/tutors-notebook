@@ -46,6 +46,15 @@
             android:orientation="vertical"
             android:padding="8dp">
 
+            <EditText
+                android:id="@+id/send_homework_edit_message"
+                style="@style/edit_text_style_default"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:hint="Добавьте комментарий"
+                android:importantForAutofill="no"
+                android:theme="@style/edit_text_theme_default" />
+
             <Button
                 android:id="@+id/send_homework_button_add_image"
                 android:layout_width="match_parent"

@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.tutorsnotebook.R
@@ -20,6 +17,8 @@ import com.google.firebase.database.DataSnapshot
 
 class CheckHomeworkFragment : Fragment() {
     private var studentKey: String = ""
+    private var messageTitleTextView: TextView? = null
+    private var messageTextView: TextView? = null
     private var scoreEditText: EditText? = null
     private var submitButton: Button? = null
 
@@ -38,16 +37,21 @@ class CheckHomeworkFragment : Fragment() {
     }
 
     private fun initUi(rootView: View) {
+        messageTextView =
+            rootView.findViewById(R.id.check_homework_text_message)
+        messageTitleTextView =
+            rootView.findViewById(R.id.check_homework_text_message_title)
+
         val imagesPreviewLayout =
             rootView.findViewById<LinearLayout>(R.id.check_homework_layout_images)
-        scoreEditText = rootView.findViewById<EditText>(R.id.check_homework_edit_score)
+        scoreEditText = rootView.findViewById(R.id.check_homework_edit_score)
 
-        submitButton = rootView.findViewById<Button>(R.id.check_homework_button_submit)
+        submitButton = rootView.findViewById(R.id.check_homework_button_submit)
         submitButton?.setOnClickListener {
             val score = scoreEditText?.text.toString()
             if (score.isNotEmpty()) {
                 val scoreInt = score.toInt()
-                if(scoreInt in 0..100) {
+                if (scoreInt in 0..100) {
                     saveScoreToDatabase(scoreInt)
 
                     Navigation.findNavController(it)
@@ -70,10 +74,15 @@ class CheckHomeworkFragment : Fragment() {
                         ImageHandler.stringToBitmap(image)
                     )
                 }
-                if(homework.score != -1) {
+                if (homework.score != -1) {
                     Toaster.toast("Работа уже проверена", requireContext())
                     scoreEditText?.setText(homework.score.toString())
                     submitButton?.text = "изменить оценку"
+                }
+                if(homework.message.isNotEmpty()) {
+                    messageTitleTextView?.visibility = View.VISIBLE
+                    messageTextView?.visibility = View.VISIBLE
+                    messageTextView?.text = homework.message
                 }
             }
         })
