@@ -6,6 +6,9 @@
     <string name="notes"></string>
     <string name="note_title">Заголовок</string>
     <string name="note_content">Текст</string>
+    <string name="note_title_hint">Заголовок</string>
+    <string name="note_content_hint">Текст</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="source_google_drive">Google Drive</string>
