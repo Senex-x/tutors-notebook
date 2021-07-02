@@ -27,7 +27,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/student_info_image_view_payment_status"
+                android:id="@+id/list_item_student_image_view_payment_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_check_circle_24"
@@ -36,7 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/student_info_edit_text_name"
+                android:id="@+id/list_item_student_edit_text_name"
                 style="@style/text_style_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,22 +45,22 @@
                 android:text="name"
                 android:textSize="@dimen/text_size_default"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/student_info_image_view_payment_status"
+                app:layout_constraintStart_toEndOf="@+id/list_item_student_image_view_payment_status"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/student_info_text_view_score"
+                android:id="@+id/list_item_student_text_view_score"
                 style="@style/text_style_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/text_size_default"
                 android:text="100"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/student_info_image_view_score_status"
+                app:layout_constraintEnd_toStartOf="@+id/list_item_student_image_view_score_status"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/student_info_image_view_score_status"
+                android:id="@+id/list_item_student_image_view_score_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_up_28"
@@ -82,7 +82,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/student_info_edit_text_name">
+            app:layout_constraintTop_toBottomOf="@+id/list_item_student_edit_text_name">
 
             <TextView
                 style="@style/text_style_default"

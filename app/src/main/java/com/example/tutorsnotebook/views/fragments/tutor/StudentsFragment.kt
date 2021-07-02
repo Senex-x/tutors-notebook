@@ -15,7 +15,7 @@ import com.example.tutorsnotebook.database.Database
 import com.example.tutorsnotebook.entities.Student
 import com.example.tutorsnotebook.utils.GsonHandler
 import com.example.tutorsnotebook.utils.IconHandler
-import com.example.tutorsnotebook.utils.StudentsRecyclerClickListener
+import com.example.tutorsnotebook.utils.CustomRecyclerClickListener
 import com.example.tutorsnotebook.views.adapters.StudentsRecyclerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -72,10 +72,10 @@ class StudentsFragment : Fragment() {
             //studentsList = generateRandomCardsData()
         }
         recyclerView?.addOnItemTouchListener(
-            StudentsRecyclerClickListener(
+            CustomRecyclerClickListener(
                 contextState,
                 recyclerView!!,
-                object : StudentsRecyclerClickListener.OnItemClickListener {
+                object : CustomRecyclerClickListener.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
                         openStudent(studentsList!![position], view!!)
                     }
