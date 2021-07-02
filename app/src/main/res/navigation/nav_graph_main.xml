@@ -53,7 +53,7 @@
         android:id="@+id/addStudentFragment"
         android:name="com.example.tutorsnotebook.views.fragments.tutor.AddStudentFragment"
         android:label="AddStudentFragment"
-        tools:layout="@layout/fragment_add_student" >
+        tools:layout="@layout/fragment_add_student">
         <action
             android:id="@+id/action_addStudentFragment_to_studentsFragment"
             app:destination="@id/studentsFragment" />
@@ -77,6 +77,45 @@
             app:destination="@id/calendarFragment" />
         <action
             android:id="@+id/action_studentInfoFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
+
+        <action
+            android:id="@+id/action_studentInfoFragment_to_checkHomeworkFragment"
+            app:destination="@id/checkHomeworkFragment" />
+        <action
+            android:id="@+id/action_studentInfoFragment_to_knowledgeFragment"
+            app:destination="@id/knowledgeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkHomeworkFragment"
+        android:name="com.example.tutorsnotebook.views.fragments.tutor.CheckHomeworkFragment"
+        android:label="CheckHomeworkFragment"
+        tools:layout="@layout/fragment_check_homework">
+        <action
+            android:id="@+id/action_checkHomeworkFragment_to_studentsFragment"
+            app:destination="@id/studentsFragment" />
+        <action
+            android:id="@+id/action_checkHomeworkFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_checkHomeworkFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/knowledgeFragment"
+        android:name="com.example.tutorsnotebook.views.fragments.student.KnowledgeFragment"
+        android:label="KnowledgeFragment" >
+        <action
+            android:id="@+id/action_knowledgeFragment_to_studentInfoFragment"
+            app:destination="@id/studentInfoFragment" />
+        <action
+            android:id="@+id/action_knowledgeFragment_to_studentsFragment"
+            app:destination="@id/studentsFragment" />
+        <action
+            android:id="@+id/action_knowledgeFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_knowledgeFragment_to_notesFragment"
             app:destination="@id/notesFragment" />
     </fragment>
 </navigation>

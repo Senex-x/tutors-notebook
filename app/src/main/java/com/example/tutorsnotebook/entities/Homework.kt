@@ -3,9 +3,12 @@ package com.example.tutorsnotebook.entities
 import java.net.URI
 
 class Homework(
-    var author: Student,
-    var score: Int,
-    var status: Boolean,
-    var images: MutableList<URI>
+    var key: String = "-1",
+    var score: Int = -1,
+    var images: ArrayList<String> = ArrayList(),
+    var message: String = ""
 ) {
+    override fun toString(): String {
+        return "Homework(key='$key', score=$score, images=$images, message='$message')"
+    }
 }
