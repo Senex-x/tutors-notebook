@@ -10,15 +10,13 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tutorsnotebook.R
-import com.example.tutorsnotebook.entities.Homework
+import com.example.tutorsnotebook.database.Database
 import com.example.tutorsnotebook.entities.Student
 import com.example.tutorsnotebook.utils.GsonHandler
 import com.example.tutorsnotebook.utils.IconHandler
 import com.example.tutorsnotebook.utils.StudentsRecyclerClickListener
 import com.example.tutorsnotebook.views.adapters.StudentsRecyclerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlin.collections.ArrayList
-import kotlin.random.Random
 
 class StudentsFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
@@ -51,10 +49,10 @@ class StudentsFragment : Fragment() {
         )
     }
 
-    private fun getCardsData(): ArrayList<Student> {
-        studentsList = generateRandomCardsData()
-        return studentsList!!
-    }
+//    private fun getCardsData(): ArrayList<Student> {
+//        studentsList = generateRandomCardsData()
+//        return studentsList!!
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView(view)
@@ -64,7 +62,12 @@ class StudentsFragment : Fragment() {
     private fun initRecyclerView(rootView: View) {
         recyclerView = rootView.findViewById(R.id.students_recycler_view)
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView?.adapter = StudentsRecyclerAdapter(getCardsData(), requireContext())
+        //studentsList = generateRandomCardsData()
+        Database.getAllStudents {
+            recyclerView?.adapter = StudentsRecyclerAdapter(it, requireContext())
+            studentsList = ArrayList(it)
+            //studentsList = generateRandomCardsData()
+        }
         recyclerView?.addOnItemTouchListener(
             StudentsRecyclerClickListener(
                 context,
@@ -91,41 +94,6 @@ class StudentsFragment : Fragment() {
 
         Navigation.findNavController(view)
             .navigate(R.id.action_studentsFragment_to_studentInfoFragment, args)
-    }
-
-    private fun generateRandomCardsData(): ArrayList<Student> {
-        val students: ArrayList<Student> = ArrayList()
-        for (i in 0..10) {
-            students.add(
-                Student(
-                    "SampleKey $i",
-                    "Name $i",
-                    "Surname $i",
-                    i,
-                    "Parent name $i",
-                    i,
-                    Random.nextBoolean(),
-                    Random.nextInt(100),
-                    10,
-                    Student.ScoreStatus.values()[Random.nextInt(3)]
-                )
-            )
-        }
-        students.add(
-            Student(
-                "1576",
-                "Name",
-                "Surname",
-                0,
-                "Parent name",
-                0,
-                Random.nextBoolean(),
-                Random.nextInt(100),
-                10,
-                Student.ScoreStatus.values()[Random.nextInt(3)]
-            )
-        )
-        return students
     }
 }
 

@@ -1,12 +1,14 @@
 package com.example.tutorsnotebook.entities
 
+//TODO: имя и фамилия с большой буквы
 class Student(
     var key: String = "key",
     var name: String = "name",
     var surname: String = "surname",
-    var studentPhone: Int = 0,
+    var studentPhone: Long = 0,
     var parentName: String = "parent name",
-    var parentPhone: Int = 0,
+    var parentMiddleName : String = "parent surname",
+    var parentPhone: Long = 0,
     var isPayed: Boolean = false,
     var avgScore: Int = 0,
     // to update average score correctly
@@ -30,6 +32,16 @@ class Student(
                 "avgScore=$avgScore, " +
                 "scoreCounter=$scoreCounter, " +
                 "scoreStatus=$scoreStatus)"
+    }
+
+    companion object {
+        fun generateKey(keys: Set<String>): String {
+            var key = (1000..9999).random().toString()
+            while (key in keys) {
+                key = (1000..9999).random().toString()
+            }
+            return key
+        }
     }
 
     enum class ScoreStatus {

@@ -5,7 +5,12 @@ import com.example.tutorsnotebook.entities.Student
 import com.example.tutorsnotebook.utils.Logger
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
+
+
 import com.google.firebase.ktx.Firebase
+import io.github.serpro69.kfaker.Faker
+
+import kotlin.random.Random
 
 
 object Database {
@@ -17,14 +22,7 @@ object Database {
     }
 
     fun writeNewStudent(student: Student) {
-        getAllStudentKeys {
-            if (student.key in it) {
-                student.key = (1000..9999).random().toString()
-                writeNewStudent(student)
-            } else {
-                database.child("students").child(student.key).setValue(student)
-            }
-        }
+        database.child("students").child(student.key).setValue(student)
     }
 
     fun getStudent(key: String, callback: (Student) -> Unit) {
@@ -80,11 +78,46 @@ object Database {
         }
     }
 
-    fun getHomeworkScore(studentKey: String, listener: OnDataGetListener) {
-        database.child("homeworks").child(studentKey).child("score").get().addOnSuccessListener {
-            if(it.exists()) {
-                listener.onSuccess(it)
+    fun deleteAllStudents() {
+        getAllStudentKeys {
+            for (key in it) {
+                database.child("students").child(key).removeValue()
             }
         }
     }
+
+    fun getHomeworkScore(studentKey: String, listener: OnDataGetListener) {
+        database.child("homeworks").child(studentKey).child("score").get()
+            .addOnSuccessListener {
+                if (it.exists()) {
+                    listener.onSuccess(it)
+                }
+            }
+    }
+
+    fun addRandomUsers() {
+        val faker = Faker()
+        for (i in 0..10) {
+            //TODO: mb add russian numbers
+            writeNewStudent(
+                Student(
+                    key = Student.generateKey(setOf()),
+                    name = faker.name.firstName(),
+                    surname = faker.name.lastName(),
+                    studentPhone = faker.phoneNumber.cellPhone()
+                        .replace("[^0-9]".toRegex(), "")
+                        .toLong(),
+                    parentName = faker.name.firstName(),
+                    parentMiddleName = faker.name.lastName(),
+                    parentPhone = faker.phoneNumber.cellPhone()
+                        .replace("[^0-9]".toRegex(), "")
+                        .toLong(),
+                    avgScore = (0..100).random(),
+                    isPayed = Random.nextBoolean(),
+                    scoreStatus = Student.ScoreStatus.values().random()
+                )
+            )
+        }
+    }
 }
+

@@ -15,8 +15,13 @@ import androidx.navigation.Navigation
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.entities.Student
 import com.example.tutorsnotebook.utils.GsonHandler
+
 import com.example.tutorsnotebook.utils.IconHandler
 import com.example.tutorsnotebook.utils.Toaster
+
+import com.example.tutorsnotebook.utils.ImageHandler
+import org.w3c.dom.Text
+
 
 class StudentInfoFragment : Fragment() {
     private var studentKey: String = ""
@@ -50,6 +55,8 @@ class StudentInfoFragment : Fragment() {
             .findViewById<TextView>(R.id.student_info_edit_text_parent_phone)
         val loginTextView = rootView
             .findViewById<TextView>(R.id.student_info_text_view_login)
+        val catalogueButton = rootView
+            .findViewById<Button>(R.id.student_info_button_add_knowledge)
 
         if (args != null) {
             val serializedStudent = args.getString("data")
@@ -68,6 +75,7 @@ class StudentInfoFragment : Fragment() {
                 setScoreStatusImage(scoreStatusImageView, student.scoreStatus)
             }
         }
+
 
         val homeworksButton = rootView
             .findViewById<Button>(R.id.student_info_button_homeworks)
@@ -89,6 +97,11 @@ class StudentInfoFragment : Fragment() {
         parentPhoneTextView.setOnClickListener {
             Toaster.toast("Скопировано", context)
             context.copyToClipboard(parentPhoneTextView.text)
+        }
+
+        catalogueButton.setOnClickListener { view ->
+            Navigation.findNavController(view)
+                .navigate(R.id.action_studentInfoFragment_to_knowledgeFragment)
         }
     }
 
