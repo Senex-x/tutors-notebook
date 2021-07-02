@@ -7,5 +7,9 @@ data class Note(
     var noteText:String,
 )
 {
-    override fun toString(): String = "$title : $dateTime"
+    fun toTSV(): String = "" +
+            "$id\t" +
+            "$title\t" +
+            "$dateTime\t" +
+            "$noteText"
 }
