@@ -81,8 +81,7 @@ class StudentsFragment : Fragment() {
                     }
 
                     override fun onLongItemClick(view: View?, position: Int) {
-                        // TODO: add option to delete student for example
-                        Toast.makeText(contextState, "*Long click indicator*", Toast.LENGTH_SHORT).show()
+
                     }
                 })
         )

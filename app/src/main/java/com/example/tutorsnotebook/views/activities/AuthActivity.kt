@@ -34,22 +34,20 @@ class AuthActivity : AppCompatActivity() {
     }
 
 
-    //TODO: String to res
-    //TODO: String and int to res!!!
+    //TODO: move constants to resources
     private fun initAuthButton() {
         card_view.auth_button_enter.setOnClickListener {
             Database.getAllStudentKeys {
                 when {
                     card_view.auth_edit_text_password.text.toString() == "0000" -> {
-                        Toast.makeText(this, "SUCCESS TEACHER", Toast.LENGTH_SHORT).show() //debug
+                        //Toast.makeText(this, "SUCCESS TEACHER", Toast.LENGTH_SHORT).show() //debug
 
                         startActivity(Intent(this, MainActivity::class.java))
                     }
                     card_view.auth_edit_text_password.text.toString() in it -> {
+                        //Toast.makeText(this, "SUCCESS STUDENT", Toast.LENGTH_SHORT).show() //debug
                         val preferencesHandler = PreferencesHandler(this)
                         preferencesHandler.putStudentKey(card_view.auth_edit_text_password.text.toString())
-
-                        Toast.makeText(this, "SUCCESS STUDENT", Toast.LENGTH_SHORT).show() //debug
 
                         startActivity(Intent(this, StudentActivity::class.java))
                     }
@@ -65,7 +63,6 @@ class AuthActivity : AppCompatActivity() {
         }
     }
 
-    // TODO: rename
     private fun initTutorButton() {
         val tutorButton = findViewById<Button>(R.id.auth_button_tutor)
         tutorButton.setOnClickListener {
@@ -77,7 +74,6 @@ class AuthActivity : AppCompatActivity() {
         }
     }
 
-    // TODO: rename
     private fun initStudentButton() {
         val studentButton = findViewById<Button>(R.id.auth_button_student)
         studentButton.setOnClickListener {

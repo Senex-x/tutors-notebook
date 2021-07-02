@@ -14,11 +14,6 @@ import kotlin.random.Random
 
 object Database {
     var database: DatabaseReference = Firebase.database.reference
-    //TODO: refactor...
-    //TODO: foolproof (???)
-
-    init {
-    }
 
     fun writeNewStudent(student: Student) {
         database.child("students").child(student.key).setValue(student)
@@ -106,7 +101,6 @@ object Database {
     fun addRandomUsers() {
         val faker = Faker()
         for (i in 0..10) {
-            //TODO: mb add russian numbers
             writeNewStudent(
                 Student(
                     key = Student.generateKey(setOf()),
