@@ -1,5 +1,6 @@
 package com.example.tutorsnotebook.views.fragments.tutor
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class StudentsFragment : Fragment() {
     private var recyclerView: RecyclerView? = null
     private var studentsList: ArrayList<Student>? = null
+    private var contextState: Context? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +31,7 @@ class StudentsFragment : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_students, container, false)
 
+        contextState = requireContext()
         initFabAdd(rootView)
 
         return rootView
@@ -64,13 +67,13 @@ class StudentsFragment : Fragment() {
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
         //studentsList = generateRandomCardsData()
         Database.getAllStudents {
-            recyclerView?.adapter = StudentsRecyclerAdapter(it, requireContext())
+            recyclerView?.adapter = StudentsRecyclerAdapter(it, contextState!!)
             studentsList = ArrayList(it)
             //studentsList = generateRandomCardsData()
         }
         recyclerView?.addOnItemTouchListener(
             StudentsRecyclerClickListener(
-                context,
+                contextState,
                 recyclerView!!,
                 object : StudentsRecyclerClickListener.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
@@ -79,7 +82,7 @@ class StudentsFragment : Fragment() {
 
                     override fun onLongItemClick(view: View?, position: Int) {
                         // TODO: add option to delete student for example
-                        Toast.makeText(context, "*Long click indicator*", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(contextState, "*Long click indicator*", Toast.LENGTH_SHORT).show()
                     }
                 })
         )
