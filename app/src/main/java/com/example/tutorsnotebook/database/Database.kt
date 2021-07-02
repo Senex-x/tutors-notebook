@@ -2,7 +2,6 @@ package com.example.tutorsnotebook.database
 
 import com.example.tutorsnotebook.entities.Homework
 import com.example.tutorsnotebook.entities.Student
-import com.example.tutorsnotebook.utils.Logger
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 
@@ -91,6 +90,15 @@ object Database {
             .addOnSuccessListener {
                 if (it.exists()) {
                     listener.onSuccess(it)
+                }
+            }
+    }
+
+    fun getStudentAverageScore(studentKey: String, listener: OnObjectGetListener<Int>) {
+        database.child("students").child(studentKey).child("avgScore").get()
+            .addOnSuccessListener {
+                if (it.exists()) {
+                    listener.onSuccess(it.getValue(Int::class.java)!!)
                 }
             }
     }

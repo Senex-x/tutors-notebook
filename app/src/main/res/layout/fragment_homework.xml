@@ -7,8 +7,8 @@
     android:background="@color/primary_background">
 
     <androidx.cardview.widget.CardView
-        app:cardCornerRadius="10dp"
         style="@style/card_view_style_default"
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,6 +60,21 @@
 
             <TextView
                 android:id="@+id/homework_text_last_score"
+                style="@style/fragment_homework_element_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Загрузка..."
+                android:textSize="@dimen/text_size_big"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Средний балл:"
+                android:textSize="@dimen/text_size_big" />
+
+            <TextView
+                android:id="@+id/homework_text_avg_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Загрузка..."

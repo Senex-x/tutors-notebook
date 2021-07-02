@@ -11,11 +11,9 @@ import androidx.navigation.Navigation
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.database.Database
 import com.example.tutorsnotebook.database.OnDataGetListener
-import com.example.tutorsnotebook.utils.Logger
+import com.example.tutorsnotebook.database.OnObjectGetListener
 import com.example.tutorsnotebook.utils.PreferencesHandler
 import com.google.firebase.database.DataSnapshot
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class HomeworkFragment : Fragment() {
     var studentKey: String = ""
@@ -43,6 +41,7 @@ class HomeworkFragment : Fragment() {
 
         val statusTextView = rootView.findViewById<TextView>(R.id.homework_text_status)
         val lastScoreTextView = rootView.findViewById<TextView>(R.id.homework_text_last_score)
+        val avgScoreTextView = rootView.findViewById<TextView>(R.id.homework_text_avg_score)
 
         val studentKey = PreferencesHandler(requireActivity()).getStudentKey()
         Database.getHomeworkScore(studentKey, object : OnDataGetListener {
@@ -56,20 +55,15 @@ class HomeworkFragment : Fragment() {
                     } else {
                         statusTextView.text = "Ожидает отправки"
                         lastScoreTextView.text = score.toString()
-                        GlobalScope.launch {
-                            handleStudentScoreUpdate(score)
-                        }
                     }
                 }
             }
         })
-    }
 
-    private fun handleStudentScoreUpdate(additionalScore: Int) {
-        Database.getStudent(studentKey) {
-            it.addScore(additionalScore)
-            Database.putStudent(it)
-            Logger.d("Student score updated")
-        }
+        Database.getStudentAverageScore(studentKey, object : OnObjectGetListener<Int> {
+            override fun onSuccess(item: Int) {
+                avgScoreTextView.text = item.toString()
+            }
+        })
     }
 }

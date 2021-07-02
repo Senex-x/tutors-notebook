@@ -12,6 +12,7 @@ import com.example.tutorsnotebook.database.Database
 import com.example.tutorsnotebook.database.OnDataGetListener
 import com.example.tutorsnotebook.entities.Homework
 import com.example.tutorsnotebook.utils.ImageHandler
+import com.example.tutorsnotebook.utils.Logger
 import com.example.tutorsnotebook.utils.Toaster
 import com.google.firebase.database.DataSnapshot
 
@@ -53,6 +54,7 @@ class CheckHomeworkFragment : Fragment() {
                 val scoreInt = score.toInt()
                 if (scoreInt in 0..100) {
                     saveScoreToDatabase(scoreInt)
+                    handleStudentScoreUpdate(scoreInt)
 
                     Navigation.findNavController(it)
                         .navigate(R.id.action_checkHomeworkFragment_to_studentsFragment)
@@ -74,10 +76,18 @@ class CheckHomeworkFragment : Fragment() {
                         ImageHandler.stringToBitmap(image)
                     )
                 }
+
                 if (homework.score != -1) {
                     Toaster.toast("Работа уже проверена", requireContext())
                     scoreEditText?.setText(homework.score.toString())
-                    submitButton?.text = "изменить оценку"
+                    scoreEditText?.setTextColor(requireContext().resources.getColor(R.color.dark_gray))
+                    scoreEditText?.isEnabled = false
+
+                    submitButton?.setBackgroundColor(requireContext().resources.getColor(R.color.dark_gray))
+                    submitButton?.setOnClickListener {
+                        Toaster.toast("Ожидаем отправки учеником новой работы", requireContext())
+                    }
+                    submitButton?.text = "ожидание"
                 }
                 if(homework.message.isNotEmpty()) {
                     messageTitleTextView?.visibility = View.VISIBLE
@@ -86,6 +96,14 @@ class CheckHomeworkFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun handleStudentScoreUpdate(additionalScore: Int) {
+        Database.getStudent(studentKey) {
+            it.addScore(additionalScore)
+            Database.putStudent(it)
+            Logger.d("Student score updated")
+        }
     }
 
     private fun saveScoreToDatabase(score: Int) {
