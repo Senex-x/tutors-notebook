@@ -8,7 +8,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
 
-class StudentsRecyclerClickListener(
+class CustomRecyclerClickListener(
     context: Context?,
     recyclerView: RecyclerView,
     private val mListener: OnItemClickListener?

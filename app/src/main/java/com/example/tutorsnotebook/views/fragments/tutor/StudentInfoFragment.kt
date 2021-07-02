@@ -19,9 +19,6 @@ import com.example.tutorsnotebook.utils.GsonHandler
 import com.example.tutorsnotebook.utils.IconHandler
 import com.example.tutorsnotebook.utils.Toaster
 
-import com.example.tutorsnotebook.utils.ImageHandler
-import org.w3c.dom.Text
-
 
 class StudentInfoFragment : Fragment() {
     private var studentKey: String = ""
@@ -40,13 +37,13 @@ class StudentInfoFragment : Fragment() {
 
     private fun initUi(rootView: View, args: Bundle?) {
         val paymentStatusImageView = rootView
-            .findViewById<ImageView>(R.id.student_info_image_view_payment_status)
+            .findViewById<ImageView>(R.id.list_item_student_image_view_payment_status)
         val scoreStatusImageView =
-            rootView.findViewById<ImageView>(R.id.student_info_image_view_score_status)
+            rootView.findViewById<ImageView>(R.id.list_item_student_image_view_score_status)
         val nameTextView = rootView
-            .findViewById<TextView>(R.id.student_info_edit_text_name)
+            .findViewById<TextView>(R.id.list_item_student_edit_text_name)
         val scoreTextView = rootView
-            .findViewById<TextView>(R.id.student_info_text_view_score)
+            .findViewById<TextView>(R.id.list_item_student_text_view_score)
         val studentPhoneTextView = rootView
             .findViewById<TextView>(R.id.student_info_text_view_phone)
         val parentNameTextView = rootView

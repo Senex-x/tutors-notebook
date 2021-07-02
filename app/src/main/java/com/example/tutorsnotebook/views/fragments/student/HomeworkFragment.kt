@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.database.Database
-import com.example.tutorsnotebook.database.OnItemGetListener
+import com.example.tutorsnotebook.utils.OnItemGetListener
 import com.example.tutorsnotebook.utils.PreferencesHandler
 
 class HomeworkFragment : Fragment() {

@@ -1,15 +1,14 @@
 package com.example.tutorsnotebook.parser
 
-//TODO: Optimize imports
+import com.aspose.cells.Workbook
 import java.io.InputStream
-import com.aspose.cells.*
+
 import com.example.tutorsnotebook.entities.Question
 
 //To TEST: TestGenerator.generateQuestions(applicationContext.resources.openRawResource(R.raw.test)) to MainActivity
 class TestGenerator {
-
     companion object {
-        val LAST_QUESTION_ROW_COUNT: Int = 51
+        private const val LAST_QUESTION_ROW_COUNT = 51
 
         fun generateQuestions(stream: InputStream): MutableList<Question> {
             var cells = Workbook(stream).worksheets[0].cells

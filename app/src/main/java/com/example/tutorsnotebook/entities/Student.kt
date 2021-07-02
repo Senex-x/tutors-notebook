@@ -1,6 +1,5 @@
 package com.example.tutorsnotebook.entities
 
-//TODO: имя и фамилия с большой буквы
 class Student(
     var key: String = "key",
     var name: String = "name",

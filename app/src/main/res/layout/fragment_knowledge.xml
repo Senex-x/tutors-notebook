@@ -6,27 +6,31 @@
     android:layout_height="match_parent"
     android:background="@color/primary_background">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fragment_knowledge"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_top_navigation_view"
-        app:itemIconTint="@drawable/bottom_navigation_icon_color_selector"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/blue_for_buttons"
+        android:visibility="gone"
+        app:itemIconTint="@drawable/bottom_navigation_icon_color_selector"
+        app:itemTextColor="@color/dark_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:itemTextColor="@color/dark_gray"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/menu_top_navigation" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/knowledge_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingTop="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/list_item_knowledge" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/students_fab_add"
