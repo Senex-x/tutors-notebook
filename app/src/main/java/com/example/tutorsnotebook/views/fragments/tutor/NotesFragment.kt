@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.utils.ImageHandler
+import com.example.tutorsnotebook.utils.NotesStorageHandler
+import com.example.tutorsnotebook.views.adapters.NotesAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class NotesFragment : Fragment() {
@@ -36,5 +40,18 @@ class NotesFragment : Fragment() {
                 R.color.primary
             )
         )
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initRecyclerView(view)
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private var recyclerView : RecyclerView? = null
+
+    private fun initRecyclerView(rootView : View) {
+        recyclerView = rootView.findViewById(R.id.notes_recycler_view)
+        recyclerView?.adapter = NotesAdapter(NotesStorageHandler().readNotes(requireContext()))
+        recyclerView?.layoutManager = GridLayoutManager(requireContext(), 2)
     }
 }

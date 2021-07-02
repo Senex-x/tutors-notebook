@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.entities.Note
-import com.google.android.material.snackbar.Snackbar
+import com.example.tutorsnotebook.utils.NotesStorageHandler
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,17 +40,18 @@ class CreateNoteFragment : Fragment() {
     }
 
     private fun saveNote(rootView: View) {
-        val noteId = Random().nextInt(9999 + 1)
+        val notesStorageHandler = NotesStorageHandler()
+        val noteId = notesStorageHandler.getNoteAmount(rootView.context) + 1
         val noteTitleTextField : EditText = rootView.findViewById(R.id.note_title)
-        val noteDate = SimpleDateFormat("dd/MM/yy HH/mm/ss", Locale.UK).format(Date()).toString()
+        val noteDate = SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.UK).format(Date()).toString()
         val noteContentTextField : EditText = rootView.findViewById(R.id.note_content)
-        var note = Note(
+        val note = Note(
             noteId,
             noteTitleTextField.text.toString(),
             noteDate,
             noteContentTextField.text.toString()
         )
-        Snackbar.make(rootView, note.toString(), Snackbar.LENGTH_LONG).show()
+        notesStorageHandler.writeNote(note, rootView.context)
     }
 
 }
