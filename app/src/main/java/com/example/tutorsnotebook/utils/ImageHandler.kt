@@ -12,9 +12,7 @@ import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
-
-class ImageHandler {
-    companion object {
+object ImageHandler {
         fun getBitmapByUri(imageUri: Uri, context: Context): Bitmap {
             return MediaStore.Images.Media.getBitmap(context.contentResolver, imageUri)
         }
@@ -136,5 +134,4 @@ class ImageHandler {
             val height: Int = width * originalBitmap.height / originalBitmap.width
             return Bitmap.createScaledBitmap(originalBitmap, width, height, true)
         }
-    }
 }

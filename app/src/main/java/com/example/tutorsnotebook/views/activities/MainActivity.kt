@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
 
+        Database.getStudent("0000") {
+            println(it.toString())
+        }
+
         // Setting up navigation host for Jetpack's Navigation component framework
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment
@@ -34,9 +38,5 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.main_bottom_navigation_view)
 
         bottomNavigationView.setupWithNavController(navController)
-    }
-
-    fun setupNavigationController() {
-
     }
 }

@@ -65,9 +65,10 @@ class SendHomeworkFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK && data != null) {
             try {
                 val imageUri: Uri? = data.data
-                if (imageUri != null && imageContainerLayout != null) {
+                val imageContainer = imageContainerLayout
+                if (imageUri != null && imageContainer != null) {
                     newImagesUriList.add(imageUri)
-                    val newImageView = addNewImageView(imageContainerLayout!!)
+                    val newImageView = addNewImageView(imageContainer)
                     val bitmap = ImageHandler.handleSamplingAndRotationBitmap(
                         requireContext(),
                         imageUri

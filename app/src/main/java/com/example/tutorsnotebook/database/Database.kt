@@ -6,7 +6,6 @@ import com.example.tutorsnotebook.utils.OnItemGetListener
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 
-
 import com.google.firebase.ktx.Firebase
 import io.github.serpro69.kfaker.Faker
 
