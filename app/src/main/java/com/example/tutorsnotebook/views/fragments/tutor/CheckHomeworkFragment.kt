@@ -1,5 +1,6 @@
 package com.example.tutorsnotebook.views.fragments.tutor
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.database.Database
 import com.example.tutorsnotebook.database.OnItemGetListener
 import com.example.tutorsnotebook.entities.Homework
+import com.example.tutorsnotebook.entities.Student
 import com.example.tutorsnotebook.utils.ImageHandler
 import com.example.tutorsnotebook.utils.Logger
 import com.example.tutorsnotebook.utils.Toaster
@@ -21,6 +23,7 @@ class CheckHomeworkFragment : Fragment() {
     private var messageTextView: TextView? = null
     private var scoreEditText: EditText? = null
     private var submitButton: Button? = null
+    private var staticContext: Context? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +33,7 @@ class CheckHomeworkFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_check_homework, container, false)
 
         studentKey = requireArguments().getString("student-key")!!
+        staticContext = requireContext()
 
         initUi(rootView)
 
@@ -76,14 +80,14 @@ class CheckHomeworkFragment : Fragment() {
                 }
 
                 if (item.score != -1) {
-                    Toaster.toast("Работа уже проверена", requireContext())
+                    Toaster.toast("Работа уже проверена", staticContext!!)
                     scoreEditText?.setText(item.score.toString())
-                    scoreEditText?.setTextColor(requireContext().resources.getColor(R.color.dark_gray))
+                    scoreEditText?.setTextColor(staticContext!!.resources.getColor(R.color.dark_gray))
                     scoreEditText?.isEnabled = false
 
-                    submitButton?.setBackgroundColor(requireContext().resources.getColor(R.color.dark_gray))
+                    submitButton?.setBackgroundColor(staticContext!!.resources.getColor(R.color.dark_gray))
                     submitButton?.setOnClickListener {
-                        Toaster.toast("Ожидаем отправки учеником новой работы", requireContext())
+                        Toaster.toast("Ожидаем отправки учеником новой работы", staticContext!!)
                     }
                     submitButton?.text = "ожидание"
                 }
@@ -99,7 +103,20 @@ class CheckHomeworkFragment : Fragment() {
 
     private fun handleStudentScoreUpdate(additionalScore: Int) {
         Database.getStudent(studentKey) {
+            val avgBefore = it.avgScore
             it.addScore(additionalScore)
+            val avgAfter = it.avgScore
+            it.scoreStatus = when {
+                avgBefore < avgAfter -> {
+                    Student.ScoreStatus.INCREASES
+                }
+                avgBefore == avgAfter -> {
+                    Student.ScoreStatus.STAYS
+                }
+                else -> {
+                    Student.ScoreStatus.DECREASES
+                }
+            }
             Database.putStudent(it)
             Logger.d("Student score updated")
         }
@@ -110,7 +127,7 @@ class CheckHomeworkFragment : Fragment() {
     }
 
     private fun addNewImageView(parent: LinearLayout): ImageView {
-        val newImageView = ImageView(requireContext())
+        val newImageView = ImageView(staticContext)
         val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
