@@ -9,7 +9,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tutorsnotebook.R
-import com.example.tutorsnotebook.utils.ImageHandler
+import com.example.tutorsnotebook.utils.IconHandler
 import com.example.tutorsnotebook.utils.NotesStorageHandler
 import com.example.tutorsnotebook.views.adapters.NotesAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -34,7 +34,7 @@ class NotesFragment : Fragment() {
                 .navigate(R.id.action_notesFragment_to_createNoteFragment)
         }
         fab.setImageDrawable(
-            ImageHandler.getColoredDrawable(
+            IconHandler.getColoredDrawable(
                 requireContext(),
                 R.drawable.ic_add_24,
                 R.color.primary
