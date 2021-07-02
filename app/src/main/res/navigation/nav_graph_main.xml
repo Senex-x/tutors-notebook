@@ -78,5 +78,16 @@
         <action
             android:id="@+id/action_studentInfoFragment_to_notesFragment"
             app:destination="@id/notesFragment" />
+        <action
+            android:id="@+id/action_studentInfoFragment_to_knowledgeFragment"
+            app:destination="@id/knowledgeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/knowledgeFragment"
+        android:name="com.example.tutorsnotebook.views.fragments.student.KnowledgeFragment"
+        android:label="KnowledgeFragment" >
+        <action
+            android:id="@+id/action_knowledgeFragment_to_studentInfoFragment"
+            app:destination="@id/studentInfoFragment" />
     </fragment>
 </navigation>

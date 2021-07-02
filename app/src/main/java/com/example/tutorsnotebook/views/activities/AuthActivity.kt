@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.database.Database
 import com.example.tutorsnotebook.entities.Student
+import com.example.tutorsnotebook.parser.TestGenerator
 import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_auth.view.*
 
@@ -20,7 +21,7 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
-        // Disabling night-marked themes
+        // Disabling night-marked theme
         if (Build.VERSION.SDK_INT >= 29) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
@@ -31,7 +32,10 @@ class AuthActivity : AppCompatActivity() {
     }
 
 
+
+
     //TODO: String to res
+    //TODO: String and int to res!!!
     private fun initAuthButton() {
         card_view.auth_button_enter.setOnClickListener {
             Database.getAllStudentKeys {

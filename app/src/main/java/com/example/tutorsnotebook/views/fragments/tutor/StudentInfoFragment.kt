@@ -5,13 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.tutorsnotebook.R
 import com.example.tutorsnotebook.entities.Student
 import com.example.tutorsnotebook.utils.GsonHandler
 import com.example.tutorsnotebook.utils.ImageHandler
+import org.w3c.dom.Text
 
 class StudentInfoFragment : Fragment() {
     override fun onCreateView(
@@ -41,6 +44,8 @@ class StudentInfoFragment : Fragment() {
             .findViewById<TextView>(R.id.student_info_edit_text_parent_phone)
         val loginTextView = rootView
             .findViewById<TextView>(R.id.student_info_text_view_login)
+        val catalogueButton = rootView
+            .findViewById<Button>(R.id.student_info_button_add_knowledge)
 
         if (args != null) {
             val serializedStudent = args.getString("data")
@@ -56,6 +61,10 @@ class StudentInfoFragment : Fragment() {
                 setPaymentStatusImage(paymentStatusImageView, student.isPayed)
                 setScoreStatusImage(scoreStatusImageView, student.scoreStatus)
             }
+        }
+        catalogueButton.setOnClickListener { view->
+            Navigation.findNavController(view)
+                .navigate(R.id.action_studentInfoFragment_to_knowledgeFragment)
         }
     }
 
